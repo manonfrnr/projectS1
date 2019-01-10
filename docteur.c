@@ -12,7 +12,7 @@ struct docteur{
 
 typedef struct element_liste element_liste ;
 struct element_liste{
-  docteur value;
+  docteur * value;
   element_liste * suivant;
 };
 
@@ -24,7 +24,9 @@ struct docteur_list{
 
 void inserer_doc(docteur_list * liste, docteur doc) {
   element_liste * nouveau = malloc(sizeof(element_liste));
-  nouveau->value = doc;
+  docteur * new_doc = malloc(sizeof(docteur));
+  *new_doc = doc; 
+  nouveau->value = new_doc;
   nouveau->suivant = NULL;
   if (liste->taille == 0) {
     liste->premier = nouveau;
@@ -34,11 +36,12 @@ void inserer_doc(docteur_list * liste, docteur doc) {
       temp = temp->suivant;
     }
     temp->suivant = nouveau;
+    //printf("new_doc : %p\n", new_doc);
   }
   liste->taille++;
 }
 
-docteur init_doc(char * name, char * university, char * speciality, char * review) {
+docteur set_doc(char * name, char * university, char * speciality, char * review) {
   docteur doc;
   doc.name = name;
   doc.university = university;
@@ -47,13 +50,43 @@ docteur init_doc(char * name, char * university, char * speciality, char * revie
   return doc;
 }
 
+void init_doc(docteur * doc) {
+  doc->name = malloc(30);
+  doc->university = malloc(70);
+  doc->speciality = malloc(100);
+  doc->review = malloc(150);
+}
+
 void afficher_liste(docteur_list * liste) {
   element_liste * temp = liste->premier;
   while(temp != NULL) {
-    printf("Nom : %s\n", temp->value.name);
+    printf("Nom : %s, Université : %s, Adresse en mémoire : %p\n", temp->value->name, temp->value->university, temp->value);
     temp = temp->suivant;
   }
 }
+
+void remplissage_liste (docteur_list *dl)
+{
+	FILE *fichier;
+// Fonction qui permet le remplissage des données de médecins dans la "liste"
+	fichier= fopen("docteurs.txt","r");
+
+	if(fichier!=NULL){
+		char * line = NULL;
+		size_t len = 0;
+		ssize_t read;
+		docteur doc;
+		while ((read = getline(&line, &len, fichier)) != -1) { 
+			init_doc(&doc); // A refaire à chaque itération sinon écrit dans la même zone mémoire
+			sscanf(line,"%[^,],%[^,],%[^,],%[^,]", doc.name, doc.university, doc.speciality, doc.review);
+			inserer_doc(dl,doc);
+		}
+	}
+	
+}
+
+
+
 
 int main(int argc, char const *argv[]) {
   docteur_list *liste = malloc(sizeof(docteur_list));
@@ -61,14 +94,19 @@ int main(int argc, char const *argv[]) {
   printf("Taille init : %d\n", liste->taille);
 
   docteur * mon_docteur = malloc(sizeof(docteur));
-  *mon_docteur = init_doc("Nom", "Université", "", "");
+  *mon_docteur = set_doc("Nom", "Université", "", "");
   inserer_doc(liste, *mon_docteur);
 
   docteur * mon_docteur_deux = malloc(sizeof(docteur));
-  *mon_docteur_deux = init_doc("Nom2", "Year2", "", "");
+  *mon_docteur_deux = set_doc("Nom2", "Year2", "", "");
   inserer_doc(liste, *mon_docteur_deux);
 
   printf("Taille actuelle : %d\n", liste->taille);
+  afficher_liste(liste);
+
+  remplissage_liste(liste);
+
+  printf("\n");
   afficher_liste(liste);
   return 0;
 }
