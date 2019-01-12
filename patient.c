@@ -26,8 +26,8 @@ struct patient_list{
 
 typedef struct pathologie pathologie;
 struct pathologie{
-  char * name;
-  char * definition;
+  char * nom;
+  char *definition;
   patient * value1;
   patient * value2;
   patient * value3;
@@ -41,7 +41,7 @@ struct element_pathologie{
 };
 
 typedef struct liste_pathologie liste_pathologie;
-struct patient_list{
+struct liste_pathologie{
   element_pathologie *premier;
   int taille;
 };
@@ -79,6 +79,24 @@ void inserer_pat(patient_list * liste, patient pat) {
  	 liste->taille++;
 }
 
+void inserer_path(liste_pathologie * liste, pathologie path) {
+ 	 element_pathologie * nouveau = malloc(sizeof(element_pathologie));
+	  pathologie * new_path= malloc(sizeof(pathologie));
+	  *new_path = path;
+	  nouveau->value = new_path;
+	  nouveau->suivant = NULL;
+	  if (liste->taille == 0) {
+  		  liste->premier = nouveau;
+ 	 } else {
+  		  element_pathologie * temp = liste->premier;
+  		  while(temp->suivant != NULL) {
+   			   temp = temp->suivant;
+  		  }
+ 		   temp->suivant = nouveau;
+ 	 }
+ 	 liste->taille++;
+}
+
 
 patient init_pat(char * name, char * year, char * DateIn, char * DateOut, char * Pathologie, char * Observation) {
   patient pat;
@@ -100,12 +118,37 @@ void crea_pat(patient * pat){
   pat->Observation = malloc(200);
 }
 
+
+pathologie init_path(char * nom, char * definition) {
+  pathologie path;
+  path.nom = nom;
+  path.definition = definition;
+  return path;
+}
+
+void crea_path(pathologie * path){
+  path->nom= malloc (30);
+  path->definition = malloc(250);
+}
+
 void afficher_liste(patient_list * liste) {
   element_patient * temp = liste->premier;
 	printf("\n/////////////////////////////////////////////////////////////////////");
 	printf("\nTaille actuelle : %d\n", liste->taille);
   while(temp != NULL) {
     printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s;\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->Pathologie,temp->value->Observation);
+    temp = temp->suivant;
+  }
+  printf("\n");
+}
+
+
+void afficher_path(liste_pathologie * path) {
+  element_pathologie * temp = path->premier;
+	printf("\n/////////////////////////////////////////////////////////////////////");
+	printf("\nTaille actuelle : %d\n", path->taille);
+  while(temp != NULL) {
+    printf("Nom : %s\t\nDefinition: %s\t\n\n", temp->value->nom,temp->value->definition);
     temp = temp->suivant;
   }
   printf("\n");
@@ -126,9 +169,9 @@ void fill_pat (patient_list* pl){
 			sscanf(line,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,]", pat.name, pat.year, pat.DateIn, pat.DateOut,pat.Pathologie, pat.Observation);
 			
 			inserer_pat(pl,pat);
-			printf("étape4\n");		    	
-		}printf("étape5\n");
-	}printf("étape6\n");
+					    	
+		}
+	}
 	fclose(fichier);
 	
 }
@@ -163,29 +206,58 @@ void delete_pat (patient_list * liste, patient * pat){
 	return;
 }
 
+void fill_path (liste_pathologie* lp){
+	FILE *fichier;
+// Fonction qui permet le remplissage des données patients dans la "liste"
+	fichier= fopen("pathologie.txt","r");
+	if(fichier!=NULL){
+		char * line = NULL;
+		size_t len = 0;
+		ssize_t read;
+		pathologie path;
+		while ((read = getline(&line, &len, fichier)) != -1) {
+			crea_path(&path); // A refaire pour chaque élément sinon réécriture sur le 1er élément
+			sscanf(line,"%[^,],%[^,]", path.nom, path.definition);
+			
+			inserer_path(lp,path);
+					    	
+		}
+	}
+	fclose(fichier);
+	
+}
+
+
+
+
 
 
 int main(int argc, char const *argv[]) {
   patient_list *liste = malloc(sizeof(patient_list));
   liste->taille = 0;
+  liste_pathologie * path= malloc(sizeof(liste_pathologie));
+  path->taille =0;
   printf("Taille init : %d\n", liste->taille);
+  printf("Taille init : %d\n", path->taille);
 	fill_pat(liste);
- /* patient * mon_patient = malloc(sizeof(patient));
+	fill_path(path);
+/*
+  patient * mon_patient = malloc(sizeof(patient));
   *mon_patient = init_pat("Nom", "Year", "", "", "", "");
   inserer_pat(liste, *mon_patient);
 	
-	printf("Taille actuelle : %d\n", liste->taille);afficher_liste(liste);*/
+	printf("Taille actuelle : %d\n", liste->taille);afficher_liste(liste);
 
   patient * mon_patient_deux = malloc(sizeof(patient));
   *mon_patient_deux = init_pat("Nom2", "Year2", "", "", "", "");
-  /*inserer_pat(liste, *mon_patient_deux);
+  inserer_pat(liste, *mon_patient_deux);
 
   printf("Taille actuelle : %d\n", liste->taille);
   afficher_liste(liste);
   
   patient * mon_patient = malloc(sizeof(patient));
    *mon_patient = init_pat("Nom", "Year", "in", "out", "path", "obs");
-  inserer_pat(liste, *mon_patient);*/
+  inserer_pat(liste, *mon_patient);
   afficher_liste(liste);
 	
 	delete_pat(liste,mon_patient_deux);	printf("\ntest\n");
@@ -198,7 +270,8 @@ int main(int argc, char const *argv[]) {
 	printf("2\n");
 	  afficher_liste(liste);
 	printf("7");
-	save(liste);
+	save(liste);*/
   afficher_liste(liste);
+  afficher_path(path);
   return 0;
 }
