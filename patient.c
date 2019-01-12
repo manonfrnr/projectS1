@@ -24,7 +24,7 @@ struct patient_list{
   int taille;
 };
 
-typedef struct pathologie ppathologie;
+typedef struct pathologie pathologie;
 struct pathologie{
   char *definition;
   patient * value1;
