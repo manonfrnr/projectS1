@@ -21,14 +21,14 @@ struct file_patient { // structure qui permet un meilleur controle de la file, e
 	int taille; 
 };  
 
-void set_patient_urgence (char *name, char *symptome, char *heure_arrivee){ 
+void set_patient_urgence (char *name, char *symptome, char *heure_arrivee){  
 	patient_urgence pat; 
 	pat.name = name; 
 	pat.symptome = symptome; 
 	pat.heure_arrivee = heure_arrivee; 
 }
 
-void initialisation_patient_urgence (patient_urgence * pat){
+void initialisation_patient_urgence (patient_urgence * pat){ // initialisation de la structure du patient urgence, avec allocation de mémoire
 	pat->name = malloc (30);
 	pat->symptome = malloc(100);
 	pat->heure_arrivee = malloc(10); 
@@ -58,7 +58,7 @@ void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau
 	file_attente->taille++;
 }
 
-patient_urgence * defiler_file_attente (file_patient *file_attente){
+patient_urgence * defiler_file_attente (file_patient *file_attente){ // permet de récupérer le premier élément de al file (celui qui est là depuis plus longtemps)
 	patient_urgence * pat_a_suppr; 
 	if (file_attente->taille ==1){
 		pat_a_suppr = file_attente->debut->value; 
@@ -74,7 +74,7 @@ patient_urgence * defiler_file_attente (file_patient *file_attente){
 	return pat_a_suppr;  
 }
 
-void afficher_file_attente(file_patient *file_attente){
+void afficher_file_attente(file_patient *file_attente){// permet grace à un parcours de liste d'affichier la liste 
 	element_file *element_temp ; 
 	element_temp = file_attente->debut; 
 	while (element_temp != NULL){
