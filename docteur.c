@@ -2,24 +2,24 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct docteur docteur;
+typedef struct docteur docteur; // création du type docteur, avec toutes ses caractéristiques (nom, université diplomante, spécialité, avis)
 struct docteur{
-  char *name;
-  char *university;
-  char *speciality;
-  char *review;
+	char *name;
+ 	char *university;
+  	char *speciality;
+  	char *review;
 };
 
 typedef struct element_liste element_liste ;
 struct element_liste{
-  docteur * value;
-  element_liste * suivant;
+  	docteur * value;
+  	element_liste * suivant;
 };
 
 typedef struct docteur_list docteur_list;
 struct docteur_list{
-  element_liste *premier;
-  int taille;
+  	element_liste *premier;
+  	int taille;
 };
 
 void inserer_doc(docteur_list * liste, docteur doc) {
@@ -69,29 +69,35 @@ void remplissage_liste (docteur_list *dl)
 {
 	FILE *fichier;
 // Fonction qui permet le remplissage des données de médecins dans la "liste"
-	fichier= fopen("docteurs.txt","r");
+	fichier= fopen("docteur.txt","r");
 
 	if(fichier!=NULL){
 		char * line = NULL;
 		size_t len = 0;
 		ssize_t read;
 		docteur doc;
-		while ((read = getline(&line, &len, fichier)) != -1) { 
-			init_doc(&doc); // A refaire à chaque itération sinon écrit dans la même zone mémoire
-			sscanf(line,"%[^,],%[^,],%[^,],%[^,]", doc.name, doc.university, doc.speciality, doc.review);
-			inserer_doc(dl,doc);
+		while ((read = getline(&line, &len, fichier)) != -1) {
+			if(len > 10) { // Sécurité de ligne trop petite
+				init_doc(&doc); // A refaire à chaque itération sinon écrit dans la même zone mémoire
+				sscanf(line,"%[^,],%[^,],%[^,],%[^,]", doc.name, doc.university, doc.speciality, doc.review);
+				printf("%s\n",doc.name);
+				printf("%s\n",doc.university);
+				printf("%s\n",doc.speciality);
+				printf("%s\n\n",doc.review);
+				inserer_doc(dl, doc);
+				printf("BBBBB\n");
+			}
 		}
 	}
-	
 }
 
 
 
-
 int main(int argc, char const *argv[]) {
-  docteur_list *liste = malloc(sizeof(docteur_list));
+docteur_list *liste = malloc(sizeof(docteur_list));
   liste->taille = 0;
-  printf("Taille init : %d\n", liste->taille);
+  liste->premier = NULL; 
+     /*printf("Taille init : %d\n", liste->taille);
 
   docteur * mon_docteur = malloc(sizeof(docteur));
   *mon_docteur = set_doc("Nom", "Université", "", "");
@@ -101,12 +107,14 @@ int main(int argc, char const *argv[]) {
   *mon_docteur_deux = set_doc("Nom2", "Year2", "", "");
   inserer_doc(liste, *mon_docteur_deux);
 
-  printf("Taille actuelle : %d\n", liste->taille);
+  // printf("Taille actuelle : %d\n", liste->taille);
   afficher_liste(liste);
 
   remplissage_liste(liste);
 
-  printf("\n");
+  printf("\n\n\n"); */
   afficher_liste(liste);
+
+  
   return 0;
 }
