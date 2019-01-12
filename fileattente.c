@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
- // FONCTIONS A FAIRE /  
-// DEFILER --> OK 
-// ENFILER  --> OK 
-// LIRE LA FILE 
-
-
 typedef struct patient_urgence patient_urgence; // création du type patient_urgence, avec toutes ses caractéristiques (nom, symptome, heure arrivée)
 struct patient_urgence{
   char *name;
@@ -35,21 +28,19 @@ void set_patient_urgence (char *name, char *symptome, char *heure_arrivee){
 	pat.heure_arrivee = heure_arrivee; 
 }
 
-void initialisation_patient_urgence (patient_urgence * pat)
-{
+void initialisation_patient_urgence (patient_urgence * pat){
 	pat->name = malloc (30);
 	pat->symptome = malloc(100);
 	pat->heure_arrivee = malloc(10); 
 }
 
-void initialisation_file ( file_patient * file_attente) //Création de la file, indispensable avant toute chose.
-{
+void initialisation_file ( file_patient * file_attente){ //Création de la file, indispensable avant toute chose.
 	file_attente->debut = NULL; 
 	file_attente->fin = NULL; 
 	file_attente->taille = 0; 
 }
 
-void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau_pat) { // permet de rajouter un élément en queue de la file
+void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau_pat){ // permet de rajouter un élément en queue de la file
 	patient_urgence * pat_a_inserer = malloc(sizeof(patient_urgence));
 	*pat_a_inserer = nouveau_pat;
 	
@@ -64,7 +55,6 @@ void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau
 		file_attente->fin->suivant = nouvel_element;
 		file_attente->fin = nouvel_element;
 	}
-	
 	file_attente->taille++;
 }
 
@@ -87,8 +77,7 @@ patient_urgence * defiler_file_attente (file_patient *file_attente){
 void afficher_file_attente(file_patient *file_attente){
 	element_file *element_temp ; 
 	element_temp = file_attente->debut; 
-	while (element_temp != NULL)
-	{
+	while (element_temp != NULL){
 		printf("Nom: %s, Symptomes %s, Heure d'arrivée %s \n \n", element_temp->value->name, element_temp->value->symptome, element_temp->value->heure_arrivee);
 		element_temp = element_temp-> suivant; 
 	}
@@ -97,8 +86,6 @@ void afficher_file_attente(file_patient *file_attente){
 }
 	
 
-int main(int argc, char const *argv[])
-{
-	
+int main(int argc, char const *argv[]){
 	return 0;
 }

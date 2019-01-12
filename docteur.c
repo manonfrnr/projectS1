@@ -36,7 +36,6 @@ void inserer_doc(docteur_list * liste, docteur doc) {
       temp = temp->suivant;
     }
     temp->suivant = nouveau;
-    //printf("new_doc : %p\n", new_doc);
   }
   liste->taille++;
 }
@@ -50,7 +49,7 @@ docteur set_doc(char * name, char * university, char * speciality, char * review
   return doc;
 }
 
-void init_doc(docteur * doc) {
+void init_doc(docteur * doc) { // initialisation du docteur 
   doc->name = malloc(30);
   doc->university = malloc(70);
   doc->speciality = malloc(100);
