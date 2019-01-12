@@ -132,7 +132,7 @@ void delete_pat (patient_list * liste, patient pat){    //Supprime un élément 
 		printf("La liste ne contient aucun élément!\n");
 		return; 
 	}
-	if(comparer_patients(*(liste->premier->value), pat) ==1){ // soit c'est le premier --> redef element premier vers le 2e 
+	if(comparer_patients(*(liste->premier->value), pat) ==1){ // soit c'est le premier --> rediriger element premier vers le 2e 
 		element_patient *temp1;
 		temp1 = liste->premier; 
 		liste->premier = liste->premier->suivant; 

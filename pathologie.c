@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct patient patient;
+typedef struct patient patient; 
 struct patient{
 	char *name;
 	char *year;
@@ -11,25 +11,25 @@ struct patient{
 	char *Observation;
 };
 
-typedef struct pathologie pathologie;
+typedef struct pathologie pathologie; // création de la structure pathologie, chaque pathologie comprenant un nom et une explication 
 struct pathologie{
   	char * nom;
   	char *definition;
 };
 
-typedef struct element_pathologie element_pathologie ;
+typedef struct element_pathologie element_pathologie ; // création de la structure qui servira d'élement liste 
 struct element_pathologie{
   	pathologie * value;
  	element_pathologie * suivant;
 };
 
-typedef struct liste_pathologie liste_pathologie;
+typedef struct liste_pathologie liste_pathologie; // création de la structure liste 
 struct liste_pathologie{
   	element_pathologie *premier;
   	int taille;
 };
 
-void inserer_path(liste_pathologie * liste, pathologie patho) {
+void inserer_path(liste_pathologie * liste, pathologie patho) { // fontion qui permet d'insérer une pathologie déjà créée dans la liste 
  	element_pathologie * nouveau = malloc(sizeof(element_pathologie));
 	pathologie * new_path= malloc(sizeof(pathologie));
 	*new_path = patho;
@@ -47,19 +47,19 @@ void inserer_path(liste_pathologie * liste, pathologie patho) {
  	liste->taille++;
 }
 
-pathologie init_path(char * nom, char * definition) {
+pathologie init_path(char * nom, char * definition) { // initiailsation de la pthologie
   pathologie patho;
   patho.nom = nom;
   patho.definition = definition;
   return patho;
 }
 
-void crea_path(pathologie * patho){
+void crea_path(pathologie * patho){ // création de la pathologie avec allocation de mémoire
   patho->nom= malloc (30);
   patho->definition = malloc(250);
 }
 
-void afficher_path(liste_pathologie * patho) {
+void afficher_path(liste_pathologie * patho) { // affichage de la liste des pathologies, en parcourant la liste 
   	element_pathologie * temp = patho->premier;
 	printf("\n/////////////////////////////////////////////////////////////////////");
 	printf("\nTaille actuelle : %d\n", patho->taille);
@@ -70,7 +70,7 @@ void afficher_path(liste_pathologie * patho) {
   printf("\n");
 }
 
-void fill_path (liste_pathologie* lp){
+void fill_path (liste_pathologie* lp){ // remplissage des pathologies à partir du fichier texte
 	FILE *fichier;
 // Fonction qui permet le remplissage des données patients dans la "liste"
 	fichier= fopen("pathologie.txt","r");

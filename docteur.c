@@ -114,18 +114,15 @@ void save (docteur_list * liste){ // fonction qui permet la sauvegarde de la lis
 	fclose(fichier);
 }
 
-void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément de la liste des patients en fonction des 3 cas
-	// soit liste est vide --> on fait rien 
-	// soit c'est le premier --> redefinir element premier vers le 2e 
-	// soit c'est au milieu de la liste --> le précédent doit pointer vers le suivant 
-	if(liste-> taille ==0)
+void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément de la liste des patients en fonction des 3 cas 
+	if(liste-> taille ==0)// soit liste est vide --> on fait rien 
 	{
 		printf("La liste ne contient aucun élément!\n");
 		return; 
 	} 
 
 	if(comparer_docteurs(*(liste->premier->value), doc) ==1) // utilisation de la fonction comparer_docteurs (cf plus haut) 
-	{ 
+	{ // soit c'est le premier --> rededirifer element premier vers le 2e 
 		element_liste *temp1;
 		temp1 = liste->premier; 
 		liste->premier = liste->premier->suivant; 
@@ -133,7 +130,7 @@ void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément 
 		liste->taille --; 
 		return; 
 	}
-
+// soit c'est au milieu de la liste --> le précédent doit pointer vers le suivant
 	element_liste *temp1 = liste->premier; 
 	element_liste *temp2 = NULL; 
 	while(comparer_docteurs(*(temp1->value), doc) !=1) {
