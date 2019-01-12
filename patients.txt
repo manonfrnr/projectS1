@@ -13,3 +13,13 @@ Marleau Philippe,2,03 01 17,06 01 17,Coqueluche,L'infection est dû au refus cat
 Parmentier Antoine,76,04 08 09,17 12 13,Tuberculose et Phtisie Pulmonaire,Est décédé à la suite de problème respiratoire
 Vaillantcourt Julien,35,17 11 18,18 11 18,Pancréatite,Des vomissements ont été signalés suite à la douleur.
 Zetkin Clara,63,08 03 11,21 04 14,Broncho-pneumopathie chronique obstructive,Les maux ont pour origine la participation régulière à des manifestations.
+Dupont Rose,47,25 12 99,01 01 00,Démence,A peur du passage au prochain millénaire à faire sortir le 1er janvier.
+Labeille Maya,78,12 03 00,13 09 2019,Zona,Se prend pour une abeille
+Elizabeth Rogers,9,13 01 19,?,Hyperalkémie, due à insufisance rénale
+Hugo Coco, 27, 
+
+
+
+
+
+
