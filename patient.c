@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct patient patient;
+typedef struct patient patient; // création de la structure patient. Chaque patient est défini par un nom, un age, une date d'entrée et de sortie, une maladie et des observations
 struct patient{
   char *name;
   char *year;
@@ -12,23 +12,23 @@ struct patient{
   char *Observation;
 };
 
-typedef struct element_patient element_patient ;
+typedef struct element_patient element_patient ; // création de la structure element_patient qui sont contenus dans la liste. Ils contiennent eux même les patients
 struct element_patient{
   patient * value;
   element_patient * suivant;
 };
 
-typedef struct patient_list patient_list;
+typedef struct patient_list patient_list; // création de la structure liste, liste d'element_patient
 struct patient_list{
   element_patient *premier;
   int taille;
 };
 
-void save (patient_list * liste){
+void save (patient_list * liste){ // fonction qui permet la sauvegarde de la liste en l'écrivant dans un fichier .txt qui sera relu à la prochaine ouverture
 	patient_list *liste1 = malloc(sizeof(patient_list));
 	liste1=liste;
 	FILE * fichier;
-	fichier= fopen("loulou.txt","w");
+	fichier= fopen("sauvegarde.txt","w");
 	if(fichier!=NULL){
 		while (liste1->premier!=NULL) {
 			fprintf(fichier,"%s,%s,%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->year,liste1->premier->value->DateIn,liste1->premier->value->DateOut,liste1->premier->value->pathologie,liste1->premier->value->Observation);
@@ -40,7 +40,7 @@ void save (patient_list * liste){
 	fclose(fichier);
 }
 
-void inserer_pat(patient_list * liste, patient pat) {
+void inserer_pat(patient_list * liste, patient pat) { // permet d'insérer un patient déjà défini dans la liste existante
  	 element_patient * nouveau = malloc(sizeof(element_patient));
 	  patient * new_pat= malloc(sizeof(patient));
 	  *new_pat = pat;
@@ -58,7 +58,7 @@ void inserer_pat(patient_list * liste, patient pat) {
  	 liste->taille++;
 }
 
-patient init_pat(char * name, char * year, char * DateIn, char * DateOut, char * pathologie, char * Observation) {
+patient init_pat(char * name, char * year, char * DateIn, char * DateOut, char * pathologie, char * Observation) { // initialisation du patient 
   patient pat;
   pat.name = name;
   pat.year = year;
@@ -69,7 +69,7 @@ patient init_pat(char * name, char * year, char * DateIn, char * DateOut, char *
   return pat;
 }
 
-void crea_pat(patient * pat){
+void crea_pat(patient * pat){ // création d'un patient, en allouant la mémoire
   pat->name= malloc (30);
   pat->year = malloc(4);
   pat->DateIn = malloc(9);
@@ -78,7 +78,7 @@ void crea_pat(patient * pat){
   pat->Observation = malloc(200);
 }
 
-void afficher_liste(patient_list * liste) {
+void afficher_liste(patient_list * liste) { //permet grace à un parcours de la liste d'afficher la liste 
   element_patient * temp = liste->premier;
 	printf("\n/////////////////////////////////////////////////////////////////////");
 	printf("\nTaille actuelle : %d\n", liste->taille);
@@ -89,14 +89,11 @@ void afficher_liste(patient_list * liste) {
     printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s;\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->pathologie,temp->value->Observation);
     temp = temp->suivant;
   }
-  
-  
   printf("\n");
 }
 
-void fill_pat (patient_list* pl){
+void fill_pat (patient_list* pl){ // permet de lire dans le fichier de sauvegarde les caractéristiques de chaque patient
 	FILE *fichier;
-// Fonction qui permet le remplissage des données patients dans la "liste"
 	fichier= fopen("sauvegarde.txt","r");
 	if(fichier!=NULL){
 		char * line = NULL;
@@ -105,17 +102,14 @@ void fill_pat (patient_list* pl){
 		patient pat;
 		while ((read = getline(&line, &len, fichier)) != -1) {
 			crea_pat(&pat); // A refaire pour chaque élément sinon réécriture sur le 1er élément
-			sscanf(line,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,]", pat.name, pat.year, pat.DateIn, pat.DateOut,pat.pathologie, pat.Observation);
-			
-			inserer_pat(pl,pat);
-					    	
+			sscanf(line,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,]", pat.name, pat.year, pat.DateIn, pat.DateOut,pat.pathologie, pat.Observation);		
+			inserer_pat(pl,pat); 				    	
 		}
 	}
-	fclose(fichier);
-	
+	fclose(fichier);	
 }
 
-int comparer_patients(patient pat1, patient pat2){
+int comparer_patients(patient pat1, patient pat2){ // fonction comparant deux patient pat1 et pat2.Permet de retrouver un patient précisément. Est notemment utile pour la fonction supprimer
 	if (strcmp(pat1.name, pat2.name) == 0){
 		if (strcmp(pat1.year, pat2.year) == 0){
 			if(strcmp(pat1.DateIn, pat2.DateIn) ==0){
@@ -133,21 +127,12 @@ int comparer_patients(patient pat1, patient pat2){
 }
 
 
-
-
-
-void delete_pat (patient_list * liste, patient pat){    //Supprime un élément de la liste des patients
-	// soit liste est vide --> on fait rien 
-	// soit c'est le premier --> redef element premier vers le 2e 
-	// soit c'est au milieu de la liste --> le précédent doit pointer ver le suivant 
-	if(liste-> taille ==0)
-	{
+void delete_pat (patient_list * liste, patient pat){    //Supprime un élément de la liste des patients à l'aide de la fonction précédente, et en fonction de 3 cas: 
+	if(liste-> taille ==0){ // soit liste est vide --> on fait rien 
 		printf("La liste ne contient aucun élément!\n");
 		return; 
-	} 
-
-	if(comparer_patients(*(liste->premier->value), pat) ==1)
-	{ 
+	}
+	if(comparer_patients(*(liste->premier->value), pat) ==1){ // soit c'est le premier --> redef element premier vers le 2e 
 		element_patient *temp1;
 		temp1 = liste->premier; 
 		liste->premier = liste->premier->suivant; 
@@ -155,48 +140,16 @@ void delete_pat (patient_list * liste, patient pat){    //Supprime un élément 
 		liste->taille --; 
 		return; 
 	}
-
-	element_patient *temp1 = liste->premier; 
+	element_patient *temp1 = liste->premier; // soit c'est au milieu de la liste --> le précédent doit pointer ver le suivant 
 	element_patient *temp2 = NULL; 
 	while(comparer_patients(*(temp1->value), pat) !=1) {
 		temp2 = temp1; 
 		temp1 = temp1->suivant; 
 	}
-
 	temp2->suivant = temp1->suivant; 
 	free(temp1); 
 	liste->taille --; 
-
-
-
-
-
-
-	/*element_patient * liste1 = malloc(sizeof(element_patient));
-	liste1=liste->premier;
-	if(liste->taille==0){
-		printf("Aucun élémént à supprimer");
-		printf("\ntest1\n");
-		return;
-	}
-	
-	while((liste1->suivant != NULL)  &&  (pat != liste1->value)){
-		if(pat!=liste1->value){
-		liste1=liste1->suivant;printf("\ntest3\n");}
-		else{break;}		
-	}
-	printf("\ntest4\n");
-	if(liste1->suivant->suivant !=NULL){		
-	liste1=liste1->suivant->suivant;
-	}
-	else{liste1=NULL;}	
-	printf("\ntest4\n");		
-	//liste->taille--;
-	save(liste);
-	return;*/
 }
-
-
 
 int main(int argc, char const *argv[]) {
   patient_list *liste = malloc(sizeof(patient_list));
@@ -220,41 +173,6 @@ int main(int argc, char const *argv[]) {
 
   delete_pat (liste, *mon_patient_deux); 
   save(liste); 
-
-  /*printf("Taille init : %d\n", liste->taille);
-  printf("Taille init : %d\n", path->taille);
-	fill_pat(liste);
-	fill_path(path);*/
-/*
-  patient * mon_patient = malloc(sizeof(patient));
-  *mon_patient = init_pat("Nom", "Year", "", "", "", "");
-  inserer_pat(liste, *mon_patient);
-	
-	printf("Taille actuelle : %d\n", liste->taille);afficher_liste(liste);
-c
-  patient * mon_patient_deux = malloc(sizeof(patient));
-  *mon_patient_deux = init_pat("Nom2", "Year2", "", "", "", "");
-  inserer_pat(liste, *mon_patient_deux);
-
-  printf("Taille actuelle : %d\n", liste->taille);
-  afficher_liste(liste);
-  
-  patient * mon_patient = malloc(sizeof(patient));
-   *mon_patient = init_pat("Nom", "Year", "in", "out", "path", "obs");
-  inserer_pat(liste, *mon_patient);
-  afficher_liste(liste);
-	
-	delete_pat(liste,mon_patient_deux);	printf("\ntest\n");
-	//fill_pat(liste);
-	save(liste);printf("\ntest\n");
-	
-	
-	inserer_pat(liste, *mon_patient_deux);
-	fill_pat(liste);
-	printf("2\n");
-	  afficher_liste(liste);
-	printf("7");
-	save(liste);*/
   afficher_liste(liste);
   return 0;
 }
