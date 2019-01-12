@@ -26,7 +26,8 @@ struct patient_list{
 
 typedef struct pathologie pathologie;
 struct pathologie{
-  char *definition;
+  char * name;
+  char * definition;
   patient * value1;
   patient * value2;
   patient * value3;
