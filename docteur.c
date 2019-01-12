@@ -60,7 +60,10 @@ void init_doc(docteur * doc) {
 void afficher_liste(docteur_list * liste) {
   element_liste * temp = liste->premier;
   while(temp != NULL) {
-    printf("Nom : %s, Université : %s, Adresse en mémoire : %p\n", temp->value->name, temp->value->university, temp->value);
+    printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", temp->value->name, temp->value->university, temp->value->speciality, temp->value->review);
+   	printf("Taille de la liste:%d\n",liste->taille );
+    printf("\n\n");
+
     temp = temp->suivant;
   }
 }
@@ -91,29 +94,97 @@ void remplissage_liste (docteur_list *dl)
 	}
 }
 
+int comparer_docteurs(docteur doc1, docteur doc2){
+	if (strcmp(doc1.name, doc2.name) == 0){
+		if (strcmp(doc1.university, doc2.university) == 0){
+			if(strcmp(doc1.speciality, doc2.speciality) ==0){
+				if(strcmp(doc1.review, doc2.review) ==0){
+					return 1; 
+				}
+			}
+		}
+    } 
+	return 0; 
+}
+
+void save (docteur_list * liste){
+	docteur_list *liste1 = malloc(sizeof(docteur_list));
+	liste1=liste;
+	FILE * fichier;
+	fichier= fopen("sauvegarde.txt","w");
+	if(fichier!=NULL){
+		while (liste1->premier!=NULL) {
+			fprintf(fichier,"%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->university,liste1->premier->value->speciality,liste1->premier->value->review);	
+			fprintf(fichier, "\n");
+			liste1->premier=liste1->premier->suivant;	    	
+		}
+	}
+	free(liste1);
+	fclose(fichier);
+}
+
+void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément de la liste des patients
+	// soit liste est vide --> on fait rien 
+	// soit c'est le premier --> redef element premier vers le 2e 
+	// soit c'est au milieu de la liste --> le précédent doit pointer ver le suivant 
+	if(liste-> taille ==0)
+	{
+		printf("La liste ne contient aucun élément!\n");
+		return; 
+	} 
+
+	if(comparer_docteurs(*(liste->premier->value), doc) ==1)
+	{ 
+		element_liste *temp1;
+		temp1 = liste->premier; 
+		liste->premier = liste->premier->suivant; 
+		free(temp1); 
+		liste->taille --; 
+		return; 
+	}
+
+	element_liste *temp1 = liste->premier; 
+	element_liste *temp2 = NULL; 
+	while(comparer_docteurs(*(temp1->value), doc) !=1) {
+		temp2 = temp1; 
+		temp1 = temp1->suivant; 
+	}
+
+	temp2->suivant = temp1->suivant; 
+	free(temp1); 
+	liste->taille --; 
+}
 
 
 int main(int argc, char const *argv[]) {
 docteur_list *liste = malloc(sizeof(docteur_list));
   liste->taille = 0;
   liste->premier = NULL; 
-     /*printf("Taille init : %d\n", liste->taille);
+  printf("Taille init : %d\n", liste->taille);
 
   docteur * mon_docteur = malloc(sizeof(docteur));
-  *mon_docteur = set_doc("Nom", "Université", "", "");
+  *mon_docteur = set_doc("AAA", "BBB", "CCC", "DDD");
   inserer_doc(liste, *mon_docteur);
 
   docteur * mon_docteur_deux = malloc(sizeof(docteur));
-  *mon_docteur_deux = set_doc("Nom2", "Year2", "", "");
+  *mon_docteur_deux = set_doc("EEE", "FFF", "GGG", "HHHH");
   inserer_doc(liste, *mon_docteur_deux);
+  afficher_liste(liste);
 
+  docteur * mon_docteur_trois = malloc(sizeof(docteur));
+  *mon_docteur_trois = set_doc("MANON", "MANON", "MANON", "MANON");
+  inserer_doc(liste, *mon_docteur_trois);
+  afficher_liste(liste);
+
+  delete_doc(liste, *mon_docteur_deux);
   // printf("Taille actuelle : %d\n", liste->taille);
-  afficher_liste(liste);
+  //afficher_liste(liste);
 
-  remplissage_liste(liste);
+  //remplissage_liste(liste);
 
-  printf("\n\n\n"); */
+  printf("\n\n\n"); 
   afficher_liste(liste);
+  save(liste); 
 
   
   return 0;

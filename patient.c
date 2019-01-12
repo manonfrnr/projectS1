@@ -28,10 +28,11 @@ void save (patient_list * liste){
 	patient_list *liste1 = malloc(sizeof(patient_list));
 	liste1=liste;
 	FILE * fichier;
-	fichier= fopen("sauvegarde.txt","w");
+	fichier= fopen("loulou.txt","w");
 	if(fichier!=NULL){
 		while (liste1->premier!=NULL) {
-			fprintf(fichier,"%s,%s,%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->year,liste1->premier->value->DateIn,liste1->premier->value->DateOut,liste1->premier->value->pathologie,liste1->premier->value->Observation);	
+			fprintf(fichier,"%s,%s,%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->year,liste1->premier->value->DateIn,liste1->premier->value->DateOut,liste1->premier->value->pathologie,liste1->premier->value->Observation);
+			fprintf(fichier, "\n");	
 			liste1->premier=liste1->premier->suivant;	    	
 		}
 	}
@@ -218,6 +219,7 @@ int main(int argc, char const *argv[]) {
   afficher_liste(liste); 
 
   delete_pat (liste, *mon_patient_deux); 
+  save(liste); 
 
   /*printf("Taille init : %d\n", liste->taille);
   printf("Taille init : %d\n", path->taille);
@@ -229,7 +231,7 @@ int main(int argc, char const *argv[]) {
   inserer_pat(liste, *mon_patient);
 	
 	printf("Taille actuelle : %d\n", liste->taille);afficher_liste(liste);
-
+c
   patient * mon_patient_deux = malloc(sizeof(patient));
   *mon_patient_deux = init_pat("Nom2", "Year2", "", "", "", "");
   inserer_pat(liste, *mon_patient_deux);
