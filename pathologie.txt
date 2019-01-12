@@ -1,0 +1,13 @@
+Broncho-pneumopathie chronique obstructive,Maladie chronique inflammatoire des bronches caractérisée par un rétrécissement progressif et une obstruction permanente des voies aériennes et des poumons entrainant une gêne respiratoire.
+Cyanose,Symptôme clinique consistant en la coloration bleutée que prennent la peau et les muqueuses lorsque le sang contient plus de 5 grammes par décilitre d'hémoglobine désoxygénée.
+Salmonéllose, Infection à la salmonelle.
+Tétanos, Infection locale par la bactérie Clostridium tetani produisant une neurotoxine (la tétanospasmine) ciblant le système nerveux central.
+Ulcère, Plaie dans les tissus accompagnées d'une désintégration de ces derniers.
+Zona, Dermatose virale due au virus de l'herpes zoster.
+Nécrose,Forme de dégât cellulaire qui mène à la mort prématurée et non programmée des cellules dans le tissu vivant.
+Démence, Perte ou réduction des capacités cognitives suffisamment importante entrainée à la suite d'une lésion cérébrale ou d'un déclin psychologique
+Delirium tremens, Conséquence neurologique sévère à la suite d'un syndrome de sevrage d'alcool provoquant un état d'agitation accompagnée de fièvre
+Coqueluche, infection respiratoire bactérienne dont l'évolution est longue et contagieuse. Caractérisé par des quintes de toux.
+Bacillose, Maladie due à un bacille.
+Ostéonécrose,  maladie caractérisée par la mort des cellules osseuses due à une altération de la circulation sanguine. D'origine traumatique.
+Pancréatite, Inflammation du pancréas provoquant des dommages au pancréas et aux tissus voisins.
