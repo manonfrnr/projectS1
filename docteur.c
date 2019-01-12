@@ -56,23 +56,20 @@ void init_doc(docteur * doc) { // initialisation du docteur
   doc->review = malloc(150);
 }
 
-void afficher_liste(docteur_list * liste) {
+void afficher_liste(docteur_list * liste) { // fonction qui permet d'afficher la liste entière 
   element_liste * temp = liste->premier;
   while(temp != NULL) {
     printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", temp->value->name, temp->value->university, temp->value->speciality, temp->value->review);
    	printf("Taille de la liste:%d\n",liste->taille );
     printf("\n\n");
-
     temp = temp->suivant;
   }
 }
 
-void remplissage_liste (docteur_list *dl)
+void remplissage_liste (docteur_list *dl)// Fonction qui permet le remplissage des données de médecins dans la liste à partit du fichier de départ ou de sauvegarde
 {
 	FILE *fichier;
-// Fonction qui permet le remplissage des données de médecins dans la "liste"
 	fichier= fopen("docteur.txt","r");
-
 	if(fichier!=NULL){
 		char * line = NULL;
 		size_t len = 0;
@@ -82,18 +79,13 @@ void remplissage_liste (docteur_list *dl)
 			if(len > 10) { // Sécurité de ligne trop petite
 				init_doc(&doc); // A refaire à chaque itération sinon écrit dans la même zone mémoire
 				sscanf(line,"%[^,],%[^,],%[^,],%[^,]", doc.name, doc.university, doc.speciality, doc.review);
-				printf("%s\n",doc.name);
-				printf("%s\n",doc.university);
-				printf("%s\n",doc.speciality);
-				printf("%s\n\n",doc.review);
 				inserer_doc(dl, doc);
-				printf("BBBBB\n");
 			}
 		}
 	}
 }
 
-int comparer_docteurs(docteur doc1, docteur doc2){
+int comparer_docteurs(docteur doc1, docteur doc2){ // fonction de comparaison de deux chaines éléments de type docteur pour pouvoir rechercher un docteur notemment pour le supprimer
 	if (strcmp(doc1.name, doc2.name) == 0){
 		if (strcmp(doc1.university, doc2.university) == 0){
 			if(strcmp(doc1.speciality, doc2.speciality) ==0){
@@ -106,7 +98,7 @@ int comparer_docteurs(docteur doc1, docteur doc2){
 	return 0; 
 }
 
-void save (docteur_list * liste){
+void save (docteur_list * liste){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
 	docteur_list *liste1 = malloc(sizeof(docteur_list));
 	liste1=liste;
 	FILE * fichier;
@@ -122,17 +114,17 @@ void save (docteur_list * liste){
 	fclose(fichier);
 }
 
-void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément de la liste des patients
+void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément de la liste des patients en fonction des 3 cas
 	// soit liste est vide --> on fait rien 
-	// soit c'est le premier --> redef element premier vers le 2e 
-	// soit c'est au milieu de la liste --> le précédent doit pointer ver le suivant 
+	// soit c'est le premier --> redefinir element premier vers le 2e 
+	// soit c'est au milieu de la liste --> le précédent doit pointer vers le suivant 
 	if(liste-> taille ==0)
 	{
 		printf("La liste ne contient aucun élément!\n");
 		return; 
 	} 
 
-	if(comparer_docteurs(*(liste->premier->value), doc) ==1)
+	if(comparer_docteurs(*(liste->premier->value), doc) ==1) // utilisation de la fonction comparer_docteurs (cf plus haut) 
 	{ 
 		element_liste *temp1;
 		temp1 = liste->premier; 
@@ -176,15 +168,8 @@ docteur_list *liste = malloc(sizeof(docteur_list));
   afficher_liste(liste);
 
   delete_doc(liste, *mon_docteur_deux);
-  // printf("Taille actuelle : %d\n", liste->taille);
-  //afficher_liste(liste);
-
-  //remplissage_liste(liste);
-
   printf("\n\n\n"); 
   afficher_liste(liste);
   save(liste); 
-
-  
   return 0;
 }

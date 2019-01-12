@@ -81,11 +81,9 @@ void afficher_file_attente(file_patient *file_attente){
 		printf("Nom: %s, Symptomes %s, Heure d'arrivée %s \n \n", element_temp->value->name, element_temp->value->symptome, element_temp->value->heure_arrivee);
 		element_temp = element_temp-> suivant; 
 	}
-
 	printf("\n\n Fin de la liste! \n");
 }
 	
-
 int main(int argc, char const *argv[]){
 	return 0;
 }
