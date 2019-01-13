@@ -1,33 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct patient patient; 
-struct patient{
-	char *name;
-	char *year;
-	char *DateIn;
-	char *DateOut;
-	char *pathologie;
-	char *Observation;
-};
-
-typedef struct pathologie pathologie; // création de la structure pathologie, chaque pathologie comprenant un nom et une explication 
-struct pathologie{
-  	char * nom;
-  	char *definition;
-};
-
-typedef struct element_pathologie element_pathologie ; // création de la structure qui servira d'élement liste 
-struct element_pathologie{
-  	pathologie * value;
- 	element_pathologie * suivant;
-};
-
-typedef struct liste_pathologie liste_pathologie; // création de la structure liste 
-struct liste_pathologie{
-  	element_pathologie *premier;
-  	int taille;
-};
+#include "pathologie.h"
 
 void inserer_path(liste_pathologie * liste, pathologie patho) { // fontion qui permet d'insérer une pathologie déjà créée dans la liste 
  	element_pathologie * nouveau = malloc(sizeof(element_pathologie));
@@ -91,6 +62,8 @@ void fill_path (liste_pathologie* lp){ // remplissage des pathologies à partir 
 	
 }
 
+/* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
+
 int main(int argc, char const *argv[])
 {
 	liste_pathologie *liste = malloc(sizeof(liste_pathologie));
@@ -110,3 +83,5 @@ int main(int argc, char const *argv[])
   	afficher_path(liste); 
 	return 0;
 }
+
+*/

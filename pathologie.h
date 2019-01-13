@@ -1,6 +1,9 @@
 #ifndef PATHOLOGIE
 #define PATHOLOGIE
 
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct pathologie pathologie; // création de la structure pathologie, chaque pathologie comprenant un nom et une explication 
 struct pathologie{
   	char * nom;

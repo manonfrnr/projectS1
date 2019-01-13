@@ -1,0 +1,5 @@
+Alexandre Briere,Universite Pierre et Marie Curie,Docteur en informatique et electronique,Faut il se poser des questions lorsque votre docteur vous propose de remplacer la tumeur que vous avez au cerveau par un processeur many coeur ?
+Hippocrate,Universite d'Athenes,Un peu tout et médecin de famille,Franchement pour l epoque on a de la chance de tomber sur un vrai medecin et pas juste un  gourou qui vous dit de prier les plantes!
+Andre Vesale,Bruxelles,Anatomiste,Enfin un médecin qui ne vous coupe pas la mauvaise jambe! 
+Ambroise Paré,Université de Laval,Chirurgien,Coucou ESIEA Laval on espere que vous n avez pas besoin de lui on vous le pique.
+Louis Pasteur,Faculte des Sciences de Paris,Microbiologue,Medecin qui a coup sur ne vous deconseillera pas l usage des vaccins! 

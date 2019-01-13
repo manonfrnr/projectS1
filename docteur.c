@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "docteur.h"
 
 void inserer_doc(docteur_list * liste, docteur doc) {
   element_liste * nouveau = malloc(sizeof(element_liste));
@@ -36,7 +34,7 @@ void init_doc(docteur * doc) { // initialisation du docteur
   doc->review = malloc(150);
 }
 
-void afficher_liste(docteur_list * liste) { // fonction qui permet d'afficher la liste entière 
+void afficher_liste_doc(docteur_list * liste) { // fonction qui permet d'afficher la liste entière 
   element_liste * temp = liste->premier;
   while(temp != NULL) {
     printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", temp->value->name, temp->value->university, temp->value->speciality, temp->value->review);
@@ -78,7 +76,7 @@ int comparer_docteurs(docteur doc1, docteur doc2){ // fonction de comparaison de
 	return 0; 
 }
 
-void save (docteur_list * liste){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
+void save_doc (docteur_list * liste){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
 	docteur_list *liste1 = malloc(sizeof(docteur_list));
 	liste1=liste;
 	FILE * fichier;
@@ -141,16 +139,16 @@ docteur_list *liste = malloc(sizeof(docteur_list));
   docteur * mon_docteur_deux = malloc(sizeof(docteur));
   *mon_docteur_deux = set_doc("EEE", "FFF", "GGG", "HHHH");
   inserer_doc(liste, *mon_docteur_deux);
-  afficher_liste(liste);
+  afficher_liste_doc(liste);
 
   docteur * mon_docteur_trois = malloc(sizeof(docteur));
   *mon_docteur_trois = set_doc("MANON", "MANON", "MANON", "MANON");
   inserer_doc(liste, *mon_docteur_trois);
-  afficher_liste(liste);
+  afficher_liste_doc(liste);
 
   delete_doc(liste, *mon_docteur_deux);
   printf("\n\n\n"); 
-  afficher_liste(liste);
+  afficher_liste_doc(liste);
   save(liste); 
   return 0;
-} /* 
+} */

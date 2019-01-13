@@ -1,30 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "patient.h"
 
-typedef struct patient patient; // création de la structure patient. Chaque patient est défini par un nom, un age, une date d'entrée et de sortie, une maladie et des observations
-struct patient{
-  char *name;
-  char *year;
-  char *DateIn;
-  char *DateOut;
-  char *pathologie;
-  char *Observation;
-};
-
-typedef struct element_patient element_patient ; // création de la structure element_patient qui sont contenus dans la liste. Ils contiennent eux même les patients
-struct element_patient{
-  patient * value;
-  element_patient * suivant;
-};
-
-typedef struct patient_list patient_list; // création de la structure liste, liste d'element_patient
-struct patient_list{
-  element_patient *premier;
-  int taille;
-};
-
-void save (patient_list * liste){ // fonction qui permet la sauvegarde de la liste en l'écrivant dans un fichier .txt qui sera relu à la prochaine ouverture
+void save_pat (patient_list * liste){ // fonction qui permet la sauvegarde de la liste en l'écrivant dans un fichier .txt qui sera relu à la prochaine ouverture
 	element_patient *liste1 = malloc(sizeof(element_patient));
 	liste1=liste->premier;
 	FILE * fichier;
@@ -78,7 +54,7 @@ void crea_pat(patient * pat){ // création d'un patient, en allouant la mémoire
   pat->Observation = malloc(200);
 }
 
-void afficher_liste(patient_list * liste) { //permet grace à un parcours de la liste d'afficher la liste 
+void afficher_liste_pat(patient_list * liste) { //permet grace à un parcours de la liste d'afficher la liste 
   element_patient * temp = liste->premier;
 	printf("\n/////////////////////////////////////////////////////////////////////");
 	printf("\nTaille actuelle : %d\n", liste->taille);
@@ -151,6 +127,9 @@ void delete_pat (patient_list * liste, patient pat){    //Supprime un élément 
 	liste->taille --; 
 }
 
+ 
+
+/* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
 int main(int argc, char const *argv[]) {
   patient_list *liste = malloc(sizeof(patient_list));
   liste->taille = 0;
@@ -159,21 +138,21 @@ int main(int argc, char const *argv[]) {
   patient * mon_patient = malloc(sizeof(patient));
   *mon_patient = init_pat("AAA", "BBB", "CCC", "DDD", "EEE", "FFF");
   inserer_pat(liste, *mon_patient);
-  afficher_liste(liste); 
+  afficher_liste_pat(liste); 
 
   patient * mon_patient_deux = malloc(sizeof(patient));
   *mon_patient_deux = init_pat("Nom2", "Year2", "", "", "", "");
   inserer_pat(liste, *mon_patient_deux);
-  afficher_liste(liste); 
+  afficher_liste_pat(liste); 
 
   patient * mon_patient_trois = malloc(sizeof(patient));
   *mon_patient_trois = init_pat("Nom3", "Year3", "", "", "", "");
   inserer_pat(liste, *mon_patient_trois);
-  afficher_liste(liste); 
+  afficher_liste_pat(liste); 
 
   delete_pat (liste, *mon_patient_deux); 
-  afficher_liste(liste); 
-  save(liste); 
-  afficher_liste(liste);
+  afficher_liste_pat(liste); 
+  save_pat(liste); 
+  afficher_liste_pat(liste);
   return 0;
-}
+} */ 

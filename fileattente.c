@@ -1,31 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "fileattente.h"
 
-typedef struct patient_urgence patient_urgence; // création du type patient_urgence, avec toutes ses caractéristiques (nom, symptome, heure arrivée)
-struct patient_urgence{
-  char *name;
-  char *symptome;
-  char *heure_arrivee; 
-};
 
-typedef struct element_file element_file;  // création du type de la file, en premier arrivé, premier sorti 
-struct element_file{	
-	patient_urgence *value; 
-	element_file *suivant; 
-};
-
-typedef struct file_patient file_patient; //liste doublement chainée
-struct file_patient { // structure qui permet un meilleur controle de la file, en ayant toujours accès à don premier élément, son dernier et sa taille
-	element_file *debut; 
-	element_file *fin; 
-	int taille; 
-};  
-
-void set_patient_urgence (char *name, char *symptome, char *heure_arrivee){  
-	patient_urgence pat; 
-	pat.name = name; 
-	pat.symptome = symptome; 
-	pat.heure_arrivee = heure_arrivee; 
+void set_patient_urgence (patient_urgence * pat, char *name, char *symptome, char *heure_arrivee){  
+	pat->name = name; 
+	pat->symptome = symptome; 
+	pat->heure_arrivee = heure_arrivee; 
 }
 
 void initialisation_patient_urgence (patient_urgence * pat){ // initialisation de la structure du patient urgence, avec allocation de mémoire
@@ -58,7 +37,7 @@ void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau
 	file_attente->taille++;
 }
 
-patient_urgence * defiler_file_attente (file_patient *file_attente){ // permet de récupérer le premier élément de al file (celui qui est là depuis plus longtemps)
+patient_urgence * defiler_file_attente (file_patient *file_attente){ // permet de récupérer le premier élément de la file (celui qui est là depuis plus longtemps)
 	patient_urgence * pat_a_suppr; 
 	if (file_attente->taille ==1){
 		pat_a_suppr = file_attente->debut->value; 
@@ -84,6 +63,34 @@ void afficher_file_attente(file_patient *file_attente){// permet grace à un par
 	printf("\n\n Fin de la liste! \n");
 }
 	
+/* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
+
 int main(int argc, char const *argv[]){
+	patient_urgence * pat1 = malloc(sizeof(patient_urgence));
+	initialisation_patient_urgence(pat1);
+	set_patient_urgence(pat1, "pat1", "bonjour", "11H");
+	
+	patient_urgence * pat2 = malloc(sizeof(patient_urgence));
+	initialisation_patient_urgence(pat2);
+	set_patient_urgence(pat2, "pat2", "truc", "12H");
+	
+	patient_urgence * pat3 = malloc(sizeof(patient_urgence));
+	initialisation_patient_urgence(pat3);
+	set_patient_urgence(pat3, "pat3", "dodo", "13H");
+	
+	file_patient * file_attente = malloc(sizeof(file_patient));
+	initialisation_file(file_attente);
+	
+	enfiler_file_attente(file_attente, *pat1);
+	enfiler_file_attente(file_attente, *pat2);
+	enfiler_file_attente(file_attente, *pat3);
+	
+	afficher_file_attente(file_attente);
+	
+	patient_urgence * pat4 = defiler_file_attente(file_attente);
+	printf("Défilé : %s\n", pat4->name);
+	
+	afficher_file_attente(file_attente); 
+	
 	return 0;
-}
+} */
