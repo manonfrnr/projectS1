@@ -25,15 +25,15 @@ struct patient_list{
 };
 
 void save (patient_list * liste){ // fonction qui permet la sauvegarde de la liste en l'écrivant dans un fichier .txt qui sera relu à la prochaine ouverture
-	patient_list *liste1 = malloc(sizeof(patient_list));
-	liste1=liste;
+	element_patient *liste1 = malloc(sizeof(element_patient));
+	liste1=liste->premier;
 	FILE * fichier;
 	fichier= fopen("sauvegarde.txt","w");
 	if(fichier!=NULL){
-		while (liste1->premier!=NULL) {
-			fprintf(fichier,"%s,%s,%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->year,liste1->premier->value->DateIn,liste1->premier->value->DateOut,liste1->premier->value->pathologie,liste1->premier->value->Observation);
+		while (liste1!=NULL) {
+			fprintf(fichier,"%s,%s,%s,%s,%s,%s",liste1->value->name,liste1->value->year,liste1->value->DateIn,liste1->value->DateOut,liste1->value->pathologie,liste1->value->Observation);
 			fprintf(fichier, "\n");	
-			liste1->premier=liste1->premier->suivant;	    	
+			liste1=liste1->suivant;	    	
 		}
 	}
 	free(liste1);
@@ -47,13 +47,13 @@ void inserer_pat(patient_list * liste, patient pat) { // permet d'insérer un pa
 	  nouveau->value = new_pat;
 	  nouveau->suivant = NULL;
 	  if (liste->taille == 0) {
-  		  liste->premier = nouveau;printf("2\n");
+  		  liste->premier = nouveau;
  	 } else {
-  		  element_patient * temp = liste->premier;printf("2b\n");
-  		  while(temp->suivant != NULL) {printf("3\n");
+  		  element_patient * temp = liste->premier;
+  		  while(temp->suivant != NULL) {
    			   temp = temp->suivant;
   		  }
- 		   temp->suivant = nouveau;printf("4\n");
+ 		   temp->suivant = nouveau;
  	 }
  	 liste->taille++;
 }
@@ -82,11 +82,11 @@ void afficher_liste(patient_list * liste) { //permet grace à un parcours de la 
   element_patient * temp = liste->premier;
 	printf("\n/////////////////////////////////////////////////////////////////////");
 	printf("\nTaille actuelle : %d\n", liste->taille);
- if(temp == NULL){
-  	printf("La liste est vide!\n");
+ if(liste->taille == 0){
+  	printf("La liste est vide, rien à afficher!\n");
   }
   while(temp != NULL) {
-    printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s;\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->pathologie,temp->value->Observation);
+    printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s:\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->pathologie,temp->value->Observation);
     temp = temp->suivant;
   }
   printf("\n");
@@ -172,6 +172,7 @@ int main(int argc, char const *argv[]) {
   afficher_liste(liste); 
 
   delete_pat (liste, *mon_patient_deux); 
+  afficher_liste(liste); 
   save(liste); 
   afficher_liste(liste);
   return 0;
