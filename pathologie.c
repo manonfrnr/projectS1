@@ -62,8 +62,23 @@ void fill_path (liste_pathologie* lp){ // remplissage des pathologies à partir 
 	
 }
 
-/* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
+void save_path (liste_pathologie * liste_pathologie){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
+	element_pathologie *liste1 = malloc(sizeof(element_pathologie));
+	liste1=liste->premier;
+	FILE * fichier;
+	fichier= fopen("sauvegarde.txt","w");
+	if(fichier!=NULL){
+		while (liste1!=NULL) {
+			fprintf(fichier,"%s,%s",liste1->value->nom,liste1->value->definition);	
+			fprintf(fichier, "\n");
+			liste1=liste1->suivant;	    	
+		}
+	}
+	free(liste1);
+	fclose(fichier);
+}
 
+/* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
 int main(int argc, char const *argv[])
 {
 	liste_pathologie *liste = malloc(sizeof(liste_pathologie));
@@ -79,9 +94,7 @@ int main(int argc, char const *argv[])
   	nouvelle_patho->nom = dada; 
   	nouvelle_patho->definition = def; 
   	inserer_path(liste, *nouvelle_patho); 
-
   	afficher_path(liste); 
 	return 0;
 }
-
 */
