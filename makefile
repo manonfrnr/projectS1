@@ -1,4 +1,4 @@
-all : clean compile run clean
+all : compile run clean
 
 clean :
 	rm *.o

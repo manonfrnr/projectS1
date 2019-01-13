@@ -1,0 +1,42 @@
+- Menu Patient OK
+	*afficher liste patients
+		- affiche la liste OK
+	*rechercher patient
+		- A partir du nom du patient 
+	*créer un patient OK
+		- Appeller les bonnes fonctions OK
+		- Remplir les champs OK 
+	*supprimer un patient OK
+		- A partir du nom du patient
+		-Supprime de la liste OK
+	
+
+
+- Menu Docteur OK
+	* afficher la liste des docteursOK
+		-afficher la liste OK
+	* rechercher un docteur 
+		- a partir du nom du docteur 
+	* créer un docteur OK
+		- appeler les bonnes fonctions OK
+		- remplir les champs OK
+	* afficher les patients d'un docteur
+		- boucle qui affiche tant que c'est le bon médecin 
+	* supprimer un docteur OK
+		- a partir du nom du doc 
+		- supprime de la liste OK
+	
+
+
+
+- Menu Urgence OK
+	* Ajouter un patient à la liste d'attente  OK
+		- créer le patient OK 
+		- l'ajouter à la file OK
+	* Récupérer un patient 
+	* Afficher la liste OK
+	
+
+-Menu Pathologies: OK
+	*Afficher les pathos  OK
+	*Ajouter patho OK
