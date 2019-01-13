@@ -40,7 +40,7 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 					}
 					afficher_patient(liste_patient,num);			
 				}
-				if(value2==3){afficher_doc(liste_docteur);}
+				if(value2==3){afficher_liste_doc(liste_docteur);}
 				if(value2==4){afficher_path(liste_pathologie);}
 			}
 		}
@@ -56,50 +56,45 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 				scanf("%d",&value2);
 				if(value2==1){
 					if(liste_patient->taille<25){
+						patient_urgence * patient_attente=malloc(sizeof(patient_urgence ));
+						patient * Patient=malloc(sizeof(patient));
 						printf("Patient à ajouter?");
 						afficher_file_attente(liste_urgence);
 						patient_attente=defiler_file_attente(liste_urgence);
-						patient=conversionpatient(patient_attente);
-						inserer_pat(liste_patient, patient);
-						afficher_list(liste_patient);
+						*Patient=conversion(*Patient,*patient_attente);
+						inserer_pat(liste_patient, *Patient);
+						afficher_liste_pat(liste_patient);
 					}
 					else{
 						printf("Impossible de rajouter un patient");
 					}
 				}
 				if(value2==2){
+					patient_urgence * urgence=malloc(sizeof(patient_urgence ));
 					initialisation_patient_urgence(urgence);
-					char * name;
-					char * symptome;
-					char * heure_arrivee;
-					scanf("%s",name);
-					scanf("%s",symptome);
-					scanf("%s",heure_arrivee);
-					urgence=set_patient_urgence(name,symptome,heure_arrivee);	
+					scanf("%s",urgence->name);
+					scanf("%s",urgence->symptome);
+					scanf("%s",urgence->heure_arrivee);
+					set_patient_urgence(urgence,urgence->name,urgence->symptome,urgence->heure_arrivee);	
 				}
 							
 				if(value2==3){
-					init_doc(docteur);
-					char * name;
-					char * university;
-					char * speciality;
-					char * review;	
-					scanf("%s",name);
-					scanf("%s",university);
-					scanf("%s",speciality);
-					scanf("%s",review);
-					docteur=set_doc(name,university,speciality,review);	
-					inserer_doc(liste_docteur,docteur);			
+					docteur * docteur=malloc(sizeof(docteur));
+					init_doc(docteur);	
+					scanf("%s",docteur->name);
+					scanf("%s",docteur->university);
+					scanf("%s",docteur->speciality);
+					scanf("%s",docteur->review);
+					*docteur=set_doc(docteur->name,docteur->university,docteur->speciality,docteur->review);	
+					inserer_doc(liste_docteur,*docteur);			
 				}
 				if(value2==4){
+					pathologie * pathologie=malloc(sizeof(pathologie));
 					crea_path(pathologie);
-					char * name;
-					char * definition;
-					scanf("%s",name);
-					scanf("%s",definition);
-					pathologie=init_path(name,definition);
-					inserer_path(liste_pathologie,pathologie);					
-
+					scanf("%s",pathologie->nom);
+					scanf("%s",pathologie->definition);
+					*pathologie=init_path(pathologie->nom,pathologie->definition);
+					inserer_path(liste_pathologie,*pathologie);
 				}
 			}
 		}
@@ -114,7 +109,7 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 				value2=0;
 				scanf("%d",&value2);
 				if(value2==1){
-					if(listepat->taille!=0){
+					if(liste_patient->taille!=0){
 						
 					}
 					else{
@@ -122,21 +117,32 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 					}
 				}
 				if(value2==2){
-					
+					if(liste_patient->taille!=0){
+						//delete_path(liste_pathologie,pathologie);
+					}
+					else{
+						printf("Impossible de supprimer une pathologie\n");
+					}
 				}
 							
 				if(value2==3){
+					if(liste_patient->taille!=0){
+						//delete_path(liste_pathologie,pathologie);
+					}
+					else{
+						printf("Impossible de supprimer une pathologie\n");
+					}
 				}
 			}
 		}
 	}
-	clear();
-	printf("Sauvegarde en cours");
+	
+	
 	
 	save_pat(liste_patient);
 	save_doc(liste_docteur);
-	//save_urgence(liste_urgence);
-	//save_path(liste_pathologie);
+	save_urgence(liste_urgence);
+	save_path(liste_pathologie);
 	printf("\n\n\t\tMerci d'avoir utiliser Hopital manage's patient\n\n\n\n ");
 }
 
@@ -169,7 +175,7 @@ int main(){
 	liste_urgence->debut=NULL;
 
  	//interaction de l'utilisateur.
-	action_user(liste_pathologie,liste_patient,liste_docteur,liste_urgence);
+	action_user(liste_pathos,liste_patient,liste_docteur,liste_urgence);
 
 	return 0;
 }
