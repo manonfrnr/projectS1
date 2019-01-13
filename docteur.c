@@ -69,7 +69,7 @@ void afficher_liste(docteur_list * liste) { // fonction qui permet d'afficher la
 void remplissage_liste (docteur_list *dl)// Fonction qui permet le remplissage des données de médecins dans la liste à partit du fichier de départ ou de sauvegarde
 {
 	FILE *fichier;
-	fichier= fopen("docteur.txt","r");
+	fichier= fopen("sauvegardedoc.txt","r");
 	if(fichier!=NULL){
 		char * line = NULL;
 		size_t len = 0;
@@ -102,7 +102,7 @@ void save (docteur_list * liste){ // fonction qui permet la sauvegarde de la lis
 	docteur_list *liste1 = malloc(sizeof(docteur_list));
 	liste1=liste;
 	FILE * fichier;
-	fichier= fopen("sauvegarde.txt","w");
+	fichier= fopen("sauvegardedoc.txt","w");
 	if(fichier!=NULL){
 		while (liste1->premier!=NULL) {
 			fprintf(fichier,"%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->university,liste1->premier->value->speciality,liste1->premier->value->review);	

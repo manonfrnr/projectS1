@@ -28,7 +28,7 @@ void save (patient_list * liste){ // fonction qui permet la sauvegarde de la lis
 	element_patient *liste1 = malloc(sizeof(element_patient));
 	liste1=liste->premier;
 	FILE * fichier;
-	fichier= fopen("sauvegarde.txt","w");
+	fichier= fopen("sauvegardepat.txt","w");
 	if(fichier!=NULL){
 		while (liste1!=NULL) {
 			fprintf(fichier,"%s,%s,%s,%s,%s,%s",liste1->value->name,liste1->value->year,liste1->value->DateIn,liste1->value->DateOut,liste1->value->pathologie,liste1->value->Observation);
@@ -94,7 +94,7 @@ void afficher_liste(patient_list * liste) { //permet grace à un parcours de la 
 
 void fill_pat (patient_list* pl){ // permet de lire dans le fichier de sauvegarde les caractéristiques de chaque patient
 	FILE *fichier;
-	fichier= fopen("sauvegarde.txt","r");
+	fichier= fopen("sauvegardepat.txt","r");
 	if(fichier!=NULL){
 		char * line = NULL;
 		size_t len = 0;
