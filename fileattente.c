@@ -65,19 +65,7 @@ void afficher_file_attente(file_patient *file_attente){// permet grace à un par
 	printf("\n\n Fin de la liste! \n");
 }
 
-patient conversion(patient pat,patient_urgence urgence){
-	pat.name = urgence.name;
-	Printf("Quel est l'age du patient?");	
-	scanf("%s",&pat.year);
-	Printf("Date d'entrée du patient?");
-	scanf("%s",&pat.DateIn);
-	Printf("Date de sortie du patient? (mettre ? si indeterminee)");	
-	scanf("%s",pat.DateOut);
-	Printf("Pathologie du patient? (mettre ? si indeterminee)");	
-	scanf("%s",pat.pathologie);
-	pat.Observation = urgence.symptome;
-	return pat;
-}
+
 
 void save_urgence (file_patient *file_attente){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
 	element_file *liste1 = malloc(sizeof(element_file));

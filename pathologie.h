@@ -27,7 +27,5 @@ pathologie init_path(char * nom, char * definition);
 void crea_path(pathologie * patho); 
 void afficher_path(liste_pathologie * patho); 
 void fill_path (liste_pathologie* lp);
-void save_path (liste_pathologie * liste_pathologie);
-#endif
-f
 
+#endif

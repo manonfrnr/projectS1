@@ -38,7 +38,6 @@ void afficher_liste_doc(docteur_list * liste) { // fonction qui permet d'affiche
   element_liste * temp = liste->premier;
   while(temp != NULL) {
     printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", temp->value->name, temp->value->university, temp->value->speciality, temp->value->review);
-   	printf("Taille de la liste:%d\n",liste->taille );
     printf("\n\n");
     temp = temp->suivant;
   }
@@ -84,7 +83,7 @@ void save_doc (docteur_list * liste){ // fonction qui permet la sauvegarde de la
 	if(fichier!=NULL){
 		while (liste1->premier!=NULL) {
 			fprintf(fichier,"%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->university,liste1->premier->value->speciality,liste1->premier->value->review);	
-			fprintf(fichier, "\n");
+			//fprintf(fichier, "\n"); // On ne met pas de retour à la ligne en plus car il y en a déjà un à la fin des descriptions
 			liste1->premier=liste1->premier->suivant;	    	
 		}
 	}

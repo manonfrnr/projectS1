@@ -1,3 +1,11 @@
+all : clean compile run clean
+
+clean :
+	rm *.o
+
+run :
+	./hopital
+
 docteur.o : docteur.c docteur.h
 	gcc -Wall -c docteur.c
 

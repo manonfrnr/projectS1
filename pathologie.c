@@ -26,8 +26,8 @@ pathologie init_path(char * nom, char * definition) { // initiailsation de la pt
 }
 
 void crea_path(pathologie * patho){ // création de la pathologie avec allocation de mémoire
-  patho->nom= malloc (30);
-  patho->definition = malloc(250);
+  patho->nom= malloc (50);
+  patho->definition = malloc(600);
 }
 
 void afficher_path(liste_pathologie * patho) { // affichage de la liste des pathologies, en parcourant la liste 
@@ -45,6 +45,7 @@ void fill_path (liste_pathologie* lp){ // remplissage des pathologies à partir 
 	FILE *fichier;
 // Fonction qui permet le remplissage des données patients dans la "liste"
 	fichier= fopen("pathologie.txt","r");
+	
 	if(fichier!=NULL){
 		char * line = NULL;
 		size_t len = 0;
@@ -53,29 +54,13 @@ void fill_path (liste_pathologie* lp){ // remplissage des pathologies à partir 
 		while ((read = getline(&line, &len, fichier)) != -1) {
 			crea_path(&patho); // A refaire pour chaque élément sinon réécriture sur le 1er élément
 			sscanf(line,"%[^,],%[^,]", patho.nom, patho.definition);
-			
+			printf("%s\n",patho.nom);
 			inserer_path(lp,patho);
 					    	
 		}
 	}
 	fclose(fichier);
 	
-}
-
-void save_path (liste_pathologie * liste_pathologie){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
-	element_pathologie *liste1 = malloc(sizeof(element_pathologie));
-	liste1=liste->premier;
-	FILE * fichier;
-	fichier= fopen("sauvegarde.txt","w");
-	if(fichier!=NULL){
-		while (liste1!=NULL) {
-			fprintf(fichier,"%s,%s",liste1->value->nom,liste1->value->definition);	
-			fprintf(fichier, "\n");
-			liste1=liste1->suivant;	    	
-		}
-	}
-	free(liste1);
-	fclose(fichier);
 }
 
 /* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 

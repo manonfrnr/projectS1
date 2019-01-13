@@ -5,8 +5,8 @@
 
 
 void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patient, docteur_list * liste_docteur, file_patient * liste_urgence){
-	int value;
-	int value2;
+	int value=0;
+	int value2=0;
 	int num=0;
 	int echapp=9;
 	while(value !=echapp){
@@ -15,10 +15,6 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 		printf("\t\t1 - Afficher element(s)\n");
 		printf("\t\t2 - Ajouter un element\n");
 		printf("\t\t3 - Supprimer un element\n");
-		/*printf("\t\t4 - Ajouter un patient qui est présent dans la file d'attente\n");
-		printf("\t\t5 - Ajouter un patient dans la file d'attente\n");
-		printf("\t\t6 - Afficher tout les medecins\n");
-		printf("\t\t7 - Afficher toutes les pathologies\n");*/
 		printf("\t\t%d - Quitter le logiciel\n",echapp);
 		scanf("%d",&value);
 		if(value==1){
@@ -31,7 +27,9 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 			while(value2!=5){
 				value2=0;
 				scanf("%d",&value2);
-				if(value2==1){afficher_liste_pat(liste_patient);}
+				if(value2==1){
+					afficher_liste_pat(liste_patient);
+				}
 				if(value2==2){
 					afficher_liste_pat(liste_patient);
 					printf("Quel patient voulez-vous afficher en detaille?");
@@ -40,8 +38,12 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 					}
 					afficher_patient(liste_patient,num);			
 				}
-				if(value2==3){afficher_liste_doc(liste_docteur);}
-				if(value2==4){afficher_path(liste_pathologie);}
+				if(value2==3){
+					afficher_liste_doc(liste_docteur);
+				}
+				if(value2==4){
+					afficher_path(liste_pathologie);
+				}
 			}
 		}
 		if(value==2){
@@ -61,7 +63,7 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 						printf("Patient à ajouter?");
 						afficher_file_attente(liste_urgence);
 						patient_attente=defiler_file_attente(liste_urgence);
-						*Patient=conversion(*Patient,*patient_attente);
+						Patient->name=patient_attente->name;
 						inserer_pat(liste_patient, *Patient);
 						afficher_liste_pat(liste_patient);
 					}
@@ -103,7 +105,6 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 			printf("Que voulez vous faire?\n");
 			printf("\t\t1 - Supprimer un patient\n");
 			printf("\t\t2 - Supprimer un docteur\n");
-			printf("\t\t3 - Supprimer une pathologie\n");
 			printf("\t\t5 - Retour");
 			while(value2!=5){
 				value2=0;
@@ -118,19 +119,10 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 				}
 				if(value2==2){
 					if(liste_patient->taille!=0){
-						//delete_path(liste_pathologie,pathologie);
+						//delete_doc
 					}
 					else{
-						printf("Impossible de supprimer une pathologie\n");
-					}
-				}
-							
-				if(value2==3){
-					if(liste_patient->taille!=0){
-						//delete_path(liste_pathologie,pathologie);
-					}
-					else{
-						printf("Impossible de supprimer une pathologie\n");
+						printf("Impossible de supprimer un docteur\n");
 					}
 				}
 			}
@@ -142,7 +134,7 @@ void action_user(liste_pathologie * liste_pathologie, patient_list * liste_patie
 	save_pat(liste_patient);
 	save_doc(liste_docteur);
 	save_urgence(liste_urgence);
-	save_path(liste_pathologie);
+	
 	printf("\n\n\t\tMerci d'avoir utiliser Hopital manage's patient\n\n\n\n ");
 }
 
@@ -173,7 +165,12 @@ int main(){
 	file_patient *liste_urgence=malloc(sizeof(file_patient));
 	liste_urgence->taille=0;
 	liste_urgence->debut=NULL;
+	liste_urgence->fin=NULL;
+	printf("test\n");
 
+
+	afficher_liste_doc(liste_docteur);
+	
  	//interaction de l'utilisateur.
 	action_user(liste_pathos,liste_patient,liste_docteur,liste_urgence);
 
