@@ -31,5 +31,6 @@ void initialisation_file ( file_patient * file_attente);
 void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau_pat); 
 patient_urgence * defiler_file_attente (file_patient *file_attente);
 void afficher_file_attente(file_patient *file_attente); 
-
+patient conversion(patient pat,patient_urgence urgence);
+void save_urgence (file_patient *file_attente);
 #endif
