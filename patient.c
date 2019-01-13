@@ -62,27 +62,18 @@ void afficher_liste_pat(patient_list * liste) { //permet grace à un parcours de
   	printf("La liste est vide, rien à afficher!\n");
   }
   while(temp != NULL) {
-    printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s\nDocteur:%s\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->Pathologie->nom,temp->value->Observation, temp->value->Docteur->name);
+    afficher_patient(temp->value);
     temp = temp->suivant;
   }
   printf("\n");
 }
 
-void afficher_patient(patient_list * liste,int valeur) { //permet grace à un parcours de la liste d'afficher la liste
-	element_patient * temp = liste->premier;
-	if(liste->taille == 0){
-  		printf("La liste est vide, rien à afficher!\n");
+void afficher_patient(patient * pat) { //permet grace à un parcours de la liste d'afficher la liste
+	if(pat != NULL) {
+		printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s\nDocteur:%s\n\n", pat->name,pat->year,pat->DateIn,pat->DateOut,pat->Pathologie->nom,pat->Observation, pat->Docteur->name);
+	} else {
+		printf("Impossible d'afficher ce patient, non trouvé.\n");
 	}
-	int i=1;
-	while(temp != NULL) {
-		if(i==valeur){
-			printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s\nDocteur:%s\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->Pathologie->nom,temp->value->Observation, temp->value->Docteur->name);
-			return;
-		}
-		i++;
-		temp = temp->suivant;
-	}
-	printf("\n");
 }
 
 void fill_pat (patient_list* pl, docteur_list * dl, liste_pathologie * lp){ // permet de lire dans le fichier de sauvegarde les caractéristiques de chaque patient
@@ -177,6 +168,42 @@ patient_list * get_patients_by_path(patient_list * liste, pathologie path) {
 		elem = elem->suivant;
 	}
 	return result;
+}
+
+int count_patients(patient_list * liste) {
+	element_patient * elem = liste->premier;
+	int count = 0;
+	while(elem != NULL) {
+		count++;
+		elem = elem->suivant;
+	}
+	return count;
+}
+
+docteur * get_free_doc(docteur_list * liste, patient_list * pl) {
+	element_liste * elem = liste->premier;
+	int min = 999;
+	docteur * doc = NULL;
+	int count;
+	while(elem != NULL) {
+		count = count_patients(get_patients_by_doc(pl, *(elem->value)));
+		if(count < min) {
+			min = count;
+			doc = elem->value;
+		}
+		elem = elem->suivant;
+	}
+	return doc;
+}
+patient * get_pat_by_name(patient_list * liste, char * name) {
+  element_patient * elem = liste->premier;
+  while(elem != NULL) {
+    if(strcmp(elem->value->name, name) == 0) {
+      return elem->value;
+    }
+    elem = elem->suivant;
+  }
+  return NULL;
 }
 
 

@@ -36,11 +36,14 @@ void inserer_pat(patient_list * liste, patient pat);
 patient init_pat(char * name, char * year, char * DateIn, char * DateOut, char * Observation);
 void crea_pat(patient * pat);
 void afficher_liste_pat(patient_list * liste);
-void afficher_patient(patient_list * liste,int valeur);
+void afficher_patient(patient * pat);
 void fill_pat (patient_list* pl, docteur_list * dl, liste_pathologie * lp);
 int comparer_patients(patient pat1, patient pat2);
 void delete_pat (patient_list * liste, patient pat);
 patient_list * get_patients_by_doc(patient_list * liste, docteur doc);
 patient_list * get_patients_by_path(patient_list * liste, pathologie path);
+int count_patients(patient_list * liste);
+docteur * get_free_doc(docteur_list * liste, patient_list * pl);
+patient * get_pat_by_name(patient_list * liste, char * name);
 
 #endif
