@@ -11,3 +11,11 @@ Coqueluche,Infection respiratoire bacterienne dont l'évolution est longue et co
 Bacillose,Maladie due à un bacille.
 Osteonecrose,Maladie caracterisee par la mort des cellules osseuses due a une alteration de la circulation sanguine. D'origine traumatique.
 Pancreatite,Inflammation du pancreas provoquant des dommages au pancreas et aux tissus voisins.
+Zona,Le zona se manifeste par des éruptions cutanées douloureuses le long d’un nerf ou d’un ganglion nerveux. Ces éruptions surviennent en conséquence de la réactivation du virus qui cause la varicelle le virus varicelle zona (VVZ)
+Hyperalkémie,Excès de Potassium/ Peut etre du à insufisance rénale
+Mélanome,Le mélanome est un cancer de la peau ou des muqueuses développé aux dépens des mélanocytes (tumeur mélanocytaire)
+Dystrophie musculaire,La dystrophie musculaire est un groupe de maladies héréditaires qui impliquent une faiblesse musculaire et la perte de tissu musculaire, qui s’aggrave avec le temps.
+Cytomégalovirus,Le cytomégalovirus (ou CMV) est un virus responsable d'infection passant le plus souvent inaperçue. Son caractère pathogène survient surtout chez des patients dont les défenses immunitaires sont faibles : traités par immunodépresseur /atteints par le Sida /fœtus. Une infection à cytomégalovirus chez la femme enceinte peut provoquer des lésions chez le fœtus. Il s'agit de l'infection fœtale congénitale la plus fréquente dans les pays développés.
+Blénnoragie,La blennorragie est une infection sexuellement transmissible en forte augmentation qui touche principalement les organes génitaux et urinaires. 
+Rougeole,La rougeole est la fièvre éruptive qui atteint le plus grand nombre d'enfants et jeunes adultes dans le monde.
+Diabete,Le diabète est une maladie chronique qui se caractérise par un excès de sucre dans le sang ou hyperglycémie.
