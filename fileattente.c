@@ -37,6 +37,8 @@ void enfiler_file_attente ( file_patient * file_attente, patient_urgence nouveau
 	file_attente->taille++;
 }
 
+
+
 patient_urgence * defiler_file_attente (file_patient *file_attente){ // permet de récupérer le premier élément de la file (celui qui est là depuis plus longtemps)
 	patient_urgence * pat_a_suppr; 
 	if (file_attente->taille ==1){
@@ -62,9 +64,38 @@ void afficher_file_attente(file_patient *file_attente){// permet grace à un par
 	}
 	printf("\n\n Fin de la liste! \n");
 }
+
+patient conversion(patient pat,patient_urgence urgence){
+	pat.name = urgence.name;
+	Printf("Quel est l'age du patient?");	
+	scanf("%s",&pat.year);
+	Printf("Date d'entrée du patient?");
+	scanf("%s",&pat.DateIn);
+	Printf("Date de sortie du patient? (mettre ? si indeterminee)");	
+	scanf("%s",pat.DateOut);
+	Printf("Pathologie du patient? (mettre ? si indeterminee)");	
+	scanf("%s",pat.pathologie);
+	pat.Observation = urgence.symptome;
+	return pat;
+}
+
+void save_urgence (file_patient *file_attente){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
+	element_file *liste1 = malloc(sizeof(element_file));
+	liste1=file_attente->debut;
+	FILE * fichier;
+	fichier= fopen("sauvegarde.txt","w");
+	if(fichier!=NULL){
+		while (liste1!=NULL) {
+			fprintf(fichier,"%s,%s,%s",liste1->value->name,liste1->value->symptome,liste1->value->heure_arrivee);	
+			fprintf(fichier, "\n");
+			liste1=liste1->suivant;	    	
+		}
+	}
+	free(liste1);
+	fclose(fichier);
+}
 	
 /* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
-
 int main(int argc, char const *argv[]){
 	patient_urgence * pat1 = malloc(sizeof(patient_urgence));
 	initialisation_patient_urgence(pat1);
