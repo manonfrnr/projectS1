@@ -68,6 +68,23 @@ void afficher_liste_pat(patient_list * liste) { //permet grace à un parcours de
   printf("\n");
 }
 
+void afficher_patient(patient_list * liste,int valeur) { //permet grace à un parcours de la liste d'afficher la liste 
+	element_patient * temp = liste->premier;
+	if(liste->taille == 0){
+  		printf("La liste est vide, rien à afficher!\n");
+	}
+	int i=1;
+	while(temp != NULL) {
+		if(i==valeur){
+			printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s:\n\n", temp->value->name,temp->value->year,temp->value->DateIn,temp->value->DateOut,temp->value->pathologie,temp->value->Observation);
+			return;
+		}
+		i++;
+		temp = temp->suivant;
+	}
+	printf("\n");
+}
+
 void fill_pat (patient_list* pl){ // permet de lire dans le fichier de sauvegarde les caractéristiques de chaque patient
 	FILE *fichier;
 	fichier= fopen("sauvegardepat.txt","r");
@@ -139,17 +156,14 @@ int main(int argc, char const *argv[]) {
   *mon_patient = init_pat("AAA", "BBB", "CCC", "DDD", "EEE", "FFF");
   inserer_pat(liste, *mon_patient);
   afficher_liste_pat(liste); 
-
   patient * mon_patient_deux = malloc(sizeof(patient));
   *mon_patient_deux = init_pat("Nom2", "Year2", "", "", "", "");
   inserer_pat(liste, *mon_patient_deux);
   afficher_liste_pat(liste); 
-
   patient * mon_patient_trois = malloc(sizeof(patient));
   *mon_patient_trois = init_pat("Nom3", "Year3", "", "", "", "");
   inserer_pat(liste, *mon_patient_trois);
   afficher_liste_pat(liste); 
-
   delete_pat (liste, *mon_patient_deux); 
   afficher_liste_pat(liste); 
   save_pat(liste); 
