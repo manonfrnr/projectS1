@@ -2,26 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct docteur docteur; // création du type docteur, avec toutes ses caractéristiques (nom, université diplomante, spécialité, avis)
-struct docteur{
-	char *name;
- 	char *university;
-  	char *speciality;
-  	char *review;
-};
-
-typedef struct element_liste element_liste ;
-struct element_liste{
-  	docteur * value;
-  	element_liste * suivant;
-};
-
-typedef struct docteur_list docteur_list;
-struct docteur_list{
-  	element_liste *premier;
-  	int taille;
-};
-
 void inserer_doc(docteur_list * liste, docteur doc) {
   element_liste * nouveau = malloc(sizeof(element_liste));
   docteur * new_doc = malloc(sizeof(docteur));
@@ -144,6 +124,10 @@ void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément 
 }
 
 
+/* 
+
+<-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
+
 int main(int argc, char const *argv[]) {
 docteur_list *liste = malloc(sizeof(docteur_list));
   liste->taille = 0;
@@ -169,4 +153,4 @@ docteur_list *liste = malloc(sizeof(docteur_list));
   afficher_liste(liste);
   save(liste); 
   return 0;
-}
+} /* 
