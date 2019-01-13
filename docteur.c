@@ -123,29 +123,23 @@ void delete_doc (docteur_list * liste, docteur doc){    //Supprime un élément 
 
 
 /* 
-
 <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <-------------> 
-
 int main(int argc, char const *argv[]) {
 docteur_list *liste = malloc(sizeof(docteur_list));
   liste->taille = 0;
   liste->premier = NULL; 
   printf("Taille init : %d\n", liste->taille);
-
   docteur * mon_docteur = malloc(sizeof(docteur));
   *mon_docteur = set_doc("AAA", "BBB", "CCC", "DDD");
   inserer_doc(liste, *mon_docteur);
-
   docteur * mon_docteur_deux = malloc(sizeof(docteur));
   *mon_docteur_deux = set_doc("EEE", "FFF", "GGG", "HHHH");
   inserer_doc(liste, *mon_docteur_deux);
   afficher_liste_doc(liste);
-
   docteur * mon_docteur_trois = malloc(sizeof(docteur));
   *mon_docteur_trois = set_doc("MANON", "MANON", "MANON", "MANON");
   inserer_doc(liste, *mon_docteur_trois);
   afficher_liste_doc(liste);
-
   delete_doc(liste, *mon_docteur_deux);
   printf("\n\n\n"); 
   afficher_liste_doc(liste);
