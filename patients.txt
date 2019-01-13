@@ -15,11 +15,11 @@ Vaillantcourt Julien,35,17 11 18,18 11 18,Pancréatite,Des vomissements ont ét�
 Zetkin Clara,63,08 03 11,21 04 14,Broncho-pneumopathie chronique obstructive,Les maux ont pour origine la participation régulière à des manifestations.
 Dupont Rose,47,25 12 99,01 01 00,Démence,A peur du passage au prochain millénaire à faire sortir le 1er janvier.
 Labeille Maya,78,12 03 00,13 09 2019,Zona,Se prend pour une abeille
-Elizabeth Rogers,9,13 01 19,?,Hyperalkémie, due à insufisance rénale
-Hugo Coco, 27, 
-
-
-
-
-
-
+Rogers Elizabeth,9,13 01 19,?,Hyperalkémie,due à insufisance rénale
+Coco Hugo,27,23 03 11,30 09 19,Mélanome,sur le quadrant supéro-externe de la fesse.
+Moustache David,67,13 13 13,Jamais,Dystrophie musculaire,Avancée +++ Ne sortira jamais plus capable de se déplacer/attend que la mort assosistée soit votée en france car ne peut plus bouger
+Tron Chloé,45,12 04 15,17,05,15,Cytomégalovirus,En cours de traitement infecté par VIH/ diagnostic +/- 3 mois à vivre
+Dupont Catherine,52,14 01 19,14 01 14,Blénnoragie,IST à traiter
+Terry Thierry,22,13 07 16,15 10,16,Rougeole,Complication ++ Ne supporte pas AINS, Paracétamole uniquement
+David Pierre,35,11 09 09,30 09 09,Necrose du pouce,Du à accident de travail non soigné -> amputation réalisée
+Dumas Eliott,19,25 11 08,15 12 08,Diabete,Stabilisation de la maladie et arret des crises d'hypoglyémie
