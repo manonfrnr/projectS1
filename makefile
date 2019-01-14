@@ -18,7 +18,7 @@ fileattente.o : fileattente.c fileattente.h
 pathologie.o : pathologie.c pathologie.h
 	gcc -Wall -c pathologie.c
 
-main.o : main.c pathologie.o fileattente.o patient.o docteur.o
+main.o : main2.c pathologie.o fileattente.o patient.o docteur.o
 	gcc -Wall -c main2.c
 
 compile : main.o pathologie.o fileattente.o patient.o docteur.o

@@ -314,7 +314,15 @@ void action_user(){
 			menu_pathologies();
 			break;
 
-			case 9:
+			case 9:{
+				save_pat(liste_patient);
+				save_doc(liste_docteur);
+				save_urgence(file_urgence);
+	
+	printf("\n\n\t\tMerci d'avoir utiliser Hopital manage's patient\n\n\n\n ");
+
+			}
+
 			return;
 
 		}
