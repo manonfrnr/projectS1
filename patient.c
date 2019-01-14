@@ -68,6 +68,19 @@ void afficher_liste_pat(patient_list * liste) { //permet grace à un parcours de
   printf("\n");
 }
 
+void afficher_reduit(patient_list * liste) {
+	element_patient * temp = liste->premier;
+	while(temp != NULL){
+		if(temp->suivant != NULL) {
+			printf("%s, ", temp->value->name);
+		} else {
+			printf("%s", temp->value->name);
+		}
+		temp = temp->suivant;
+	}
+	printf("\n\n");
+}
+
 void afficher_patient(patient * pat) { //permet grace à un parcours de la liste d'afficher la liste
 	if(pat != NULL) {
 		printf("Nom : %s\tÂge: %s\tDate d'internement: %s\tDate de sortie: %s\nPathologie: %s;\nObservation:%s\nDocteur:%s\n\n", pat->name,pat->year,pat->DateIn,pat->DateOut,pat->Pathologie->nom,pat->Observation, pat->Docteur->name);

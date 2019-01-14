@@ -37,6 +37,7 @@ void inserer_pat(patient_list * liste, patient pat);
 patient init_pat(char * name, char * year, char * DateIn, char * DateOut, char * Observation);
 void crea_pat(patient * pat);
 void afficher_liste_pat(patient_list * liste);
+void afficher_reduit(patient_list * liste);
 void afficher_patient(patient * pat);
 void fill_pat (patient_list* pl, docteur_list * dl, liste_pathologie * lp);
 int comparer_patients(patient pat1, patient pat2);

@@ -122,6 +122,8 @@ void menu_docteur()
 				fseek(stdin,0,SEEK_END);
 				scanf("%[^\n]s", name);
 				afficher_doc(get_doc_by_name(liste_docteur, name));
+				printf("Patients de ce docteur : ");
+				afficher_reduit(get_patients_by_doc(liste_patient, *get_doc_by_name(liste_docteur, name)));
 				break; 
 			}
 
@@ -246,6 +248,7 @@ void menu_pathologies ()
 		int choix;
 		printf("\t\t1- Afficher la liste des pathologies \n");
 		printf("\t\t2- Ajouter une pathologie\n");
+		printf("\t\t3- Rechercher les malades d'une pathologie\n");
 		printf("\t\t5- Retour\n");
 		fseek(stdin,0,SEEK_END);
 		scanf ("%d", &choix);
@@ -269,6 +272,16 @@ void menu_pathologies ()
 				inserer_path(liste_pathos, *patho);
 				break;
 			} 
+
+			case 3: {
+				char pathoname[50];
+				printf("Nom de la pathologie ?\n");
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", pathoname);
+				pathologie * path = get_path_by_name(liste_pathos, pathoname);
+				printf("\nPatients possédant cette pathologie :\n");
+				afficher_reduit(get_patients_by_path(liste_patient, *path));
+			}
 
 
 			case 5: // Retour
@@ -319,11 +332,11 @@ void action_user(){
 				save_doc(liste_docteur);
 				save_urgence(file_urgence);
 	
-	printf("\n\n\t\tMerci d'avoir utiliser Hopital manage's patient\n\n\n\n ");
-
+				printf("\n\n\t\tMerci d'avoir utiliser Hopital manage's patient\n\n\n\n ");
+				return;
 			}
 
-			return;
+			
 
 		}
 	}	
