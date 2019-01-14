@@ -3,23 +3,23 @@ Blanchard Simon,15,08 09 18,08 09 18,Tetanos,L'infection est du suite a une chut
 Bridou Justin,60,03 11 78,02 01 19,Bacillose,La maladie est du suite a l'ingestion d'un saucisson infecte,Alexandre Briere
 Corbin Charles,63 ,17 11 17,08 06 19,Delirium tremens,Est persuader que le 'cavalier de la guerre' le poursuit,Hippocrate
 Desmoulins Camille,34,31 03 94,05 04 94,Demence,Se prend pour un revolutionnaire,Hippocrate
-Desrosiers Marianne,42,09 05 14,11 05 14,Necrose et Osteonecrose,Observation,Andre Vesale
+Desrosiers Marianne,42,09 05 14,11 05 14,Necrose,Observation,Andre Vesale
 Devost Anaïs,81,12 12 18,02 02 19,Ulcere,Ulcere a l'estomac ayant deja entrainer des malaises a cause de la douleur,Alexandre Briere
-Gamelin Charlotte,34,04 04 07,25 04 07,Pancreatite,Pancreatite aïgue,Andre Vesale
+Gamelin Charlotte,34,04 04 07,25 04 07,Pancreatite,Pancreatite aigue,Andre Vesale
 Laforge Gabriel,28,17 12 95,18 12 95,Tetanos,Accident du travail (porte bien son nom celui-la),Louis Pasteur
-Lemelin Adam,29,17 11 17,08 06 19,Salmonelose,L'empoisonnement a la salmonelose est du au repas du couple pour fêter leur 1 an de mariage,Ambroise Pare
-Lemelin Alicia,28,05 10 17,08 10 17,Salmonelose,L'empoisonnement a la salmonelose est du au repas du couple pour fêter leur 1 an de mariage,Louis Pasteur
+Lemelin Adam,29,17 11 17,08 06 19,Salmonellose,L'empoisonnement a la salmonelose est du au repas du couple pour feter leur 1 an de mariage,Ambroise Pare
+Lemelin Alicia,28,05 10 17,08 10 17,Salmonellose,L'empoisonnement a la salmonelose est du au repas du couple pour feter leur 1 an de mariage,Louis Pasteur
 Marleau Philippe,2,03 01 17,06 01 17,Coqueluche,L'infection est du au refus categorique de la mere a vouloir faire vacciner son enfant,Alexandre Briere
-Parmentier Antoine,76,04 08 09,17 12 13,Tuberculose et Phtisie Pulmonaire,Est decede a la suite de probleme respiratoire,Louis Pasteur
+Parmentier Antoine,76,04 08 09,17 12 13,Tuberculose,Est decede a la suite de probleme respiratoire,Louis Pasteur
 Vaillantcourt Julien,35,17 11 18,18 11 18,Pancreatite,Des vomissements ont ete signales suite a la douleur.,Hippocrate
 Zetkin Clara,63,08 03 11,21 04 14,Broncho-pneumopathie chronique obstructive,Les maux ont pour origine la participation reguliere a des manifestations.,Hippocrate
 Dupont Rose,47,25 12 99,01 01 00,Demence,A peur du passage au prochain millenaire a faire sortir le 1er janvier.,Ambroise Pare
 Labeille Maya,78,12 03 00,13 09 2019,Zona,Se prend pour une abeille,Ambroise Pare
-Rogers Elizabeth,9,13 01 19,?,Hyperalkemie,due a insufisance renale,Ambroise Pare
+Rogers Elizabeth,9,13 01 19,15 02 19,Hyperalkemie,due a insufisance renale,Ambroise Pare
 Coco Hugo,27,23 03 11,30 09 19,Melanome,sur le quadrant supero-externe de la fesse.,Louis Pasteur
-Moustache David,67,13 13 13,Jamais,Dystrophie musculaire,Avancee +++ Ne sortira jamais plus capable de se deplacer/attend que la mort assosistee soit votee en france car ne peut plus bouger,Andre Vesale
-Tron Chloe,45,12 04 15,17,05,15,Cytomegalovirus,En cours de traitement infecte par VIH/ diagnostic +/- 3 mois a vivre,Andre Vesale
+Moustache David,67,13 13 13,Jamais,Dystrophie musculaire,Avancee +++ Ne sortira jamais plus capable de se deplacer/attend que la mort assistee soit votee en france car ne peut plus bouger,Andre Vesale
+Tron Chloe,45,12 04 15,17 05 15,Cytomegalovirus,En cours de traitement infecte par VIH/ diagnostic plus ou moins 3 mois a vivre,Andre Vesale
 Dupont Catherine,52,14 01 19,14 01 14,Blennoragie,IST a traiter,Ambroise Pare
-Terry Thierry,22,13 07 16,15 10,16,Rougeole,Complication ++ Ne supporte pas AINS, Paracetamole uniquement,Louis Pasteur
-David Pierre,35,11 09 09,30 09 09,Necrose du pouce,Du a accident de travail non soigne -> amputation realisee,Andre Vesale
+Terry Thierry,22,13 07 16,15 10 16,Rougeole,Complication ++ Ne supporte pas AINS Paracetamol uniquement,Louis Pasteur
+David Pierre,35,11 09 09,30 09 09,Necrose, du poucre du a accident de travail non soigne -> amputation realisee,Andre Vesale
 Dumas Eliott,19,25 11 08,15 12 08,Diabete,Stabilisation de la maladie et arret des crises d'hypoglyemie,Alexandre Briere

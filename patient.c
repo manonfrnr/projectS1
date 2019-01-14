@@ -206,7 +206,18 @@ patient * get_pat_by_name(patient_list * liste, char * name) {
   return NULL;
 }
 
+patient * conversion_patient (patient_urgence * pat_u) 
+{
+	patient *new_pat;
+	new_pat=malloc(sizeof(patient));  
+	crea_pat(new_pat); 
+	new_pat->name = pat_u->name; 
+	new_pat->Observation = pat_u->symptome;
 
+	return new_pat; 
+
+
+}
 
 /* <-----------> MAIN DU FICHIER SERVANT A FAIRE LES TESTS UNITAIRES <------------->
 int main(int argc, char const *argv[]) {

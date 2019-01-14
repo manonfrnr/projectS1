@@ -6,16 +6,17 @@ Ulcere,Plaie dans les tissus accompagnees d'une desintegration de ces derniers.
 Zona,Dermatose virale due au virus de l'herpes zoster.
 Necrose,Forme de degat cellulaire qui mene a la mort prematuree et non programmee des cellules dans le tissu vivant.
 Demence,Perte ou reduction des capacites cognitives suffisamment importante entrainee à la suite d'une lesion cerebrale ou d'un declin psychologique
-Delirium tremens,Consequence neurologique severe a la suite d'un syndrome de sevrage d'alcool provoquant un état d'agitation accompagnee de fievre
-Coqueluche,Infection respiratoire bacterienne dont l'évolution est longue et contagieuse. Caracterise par des quintes de toux.
+Delirium tremens,Consequence neurologique severe a la suite d'un syndrome de sevrage d'alcool provoquant un etat d'agitation accompagnee de fievre
+Coqueluche,Infection respiratoire bacterienne dont l'evolution est longue et contagieuse. Caracterise par des quintes de toux.
 Bacillose,Maladie due à un bacille.
 Osteonecrose,Maladie caracterisee par la mort des cellules osseuses due a une alteration de la circulation sanguine. D'origine traumatique.
 Pancreatite,Inflammation du pancreas provoquant des dommages au pancreas et aux tissus voisins.
-Zona,Le zona se manifeste par des éruptions cutanées douloureuses le long d’un nerf ou d’un ganglion nerveux.
-Hyperalkémie,Excès de Potassium/ Peut etre du à insufisance rénale
-Mélanome,Le mélanome est un cancer de la peau ou des muqueuses développé aux dépens des mélanocytes (tumeur mélanocytaire)
-Dystrophie musculaire,La dystrophie musculaire est un groupe de maladies héréditaires qui impliquent une faiblesse musculaire et la perte de tissu musculaire qui s’aggrave avec le temps.
-Cytomégalovirus,Le cytomégalovirus (ou CMV) est un virus responsable d'infection passant le plus souvent inaperçue a caractère pathogène survient surtout chez des patients dont les défenses immunitaires sont faibles.
-Blénnoragie,La blennorragie est une infection sexuellement transmissible en forte augmentation qui touche principalement les organes génitaux et urinaires. 
-Rougeole,La rougeole est la fièvre éruptive qui atteint le plus grand nombre d'enfants et jeunes adultes dans le monde.
-Diabete,Le diabète est une maladie chronique qui se caractérise par un excès de sucre dans le sang ou hyperglycémie.
+Zona,Le zona se manifeste par des eruptions cutanees douloureuses le long d’un nerf ou d’un ganglion nerveux.
+Hyperalkemie,Exces de Potassium/ Peut etre du à insufisance renale
+Melanome,Le melanome est un cancer de la peau ou des muqueuses developpe aux depens des melanocytes (tumeur melanocytaire)
+Dystrophie musculaire,La dystrophie musculaire est un groupe de maladies hereditaires qui impliquent une faiblesse musculaire et la perte de tissu musculaire qui s’aggrave avec le temps.
+Cytomegalovirus,Le cytomegalovirus (ou CMV) est un virus responsable d'infection passant le plus souvent inaperçue a caractere pathogene survient surtout chez des patients dont les defenses immunitaires sont faibles.
+Blennoragie,La blennorragie est une infection sexuellement transmissible en forte augmentation qui touche principalement les organes genitaux et urinaires. 
+Rougeole,La rougeole est la fievre eruptive qui atteint le plus grand nombre d'enfants et jeunes adultes dans le monde.
+Diabete,Le diabete est une maladie chronique qui se caracterise par un exces de sucre dans le sang ou hyperglycemie.
+Tuberculose,La tuberculose est une maladie infectieuse des poumons.

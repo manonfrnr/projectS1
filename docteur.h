@@ -28,6 +28,7 @@ struct docteur_list{
 void inserer_doc(docteur_list * liste, docteur doc);
 docteur set_doc(char * name, char * university, char * speciality, char * review);
 void init_doc(docteur * doc);
+void afficher_doc(docteur * doc); 
 void afficher_liste_doc(docteur_list * liste);
 void remplissage_liste (docteur_list *dl);
 int comparer_docteurs(docteur doc1, docteur doc2);

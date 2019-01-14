@@ -33,11 +33,15 @@ void init_doc(docteur * doc) { // initialisation du docteur
   doc->speciality = malloc(100);
   doc->review = malloc(150);
 }
+void afficher_doc(docteur * doc)
+{
+	printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", doc->name, doc->university, doc->speciality, doc->review);
+}
 
 void afficher_liste_doc(docteur_list * liste) { // fonction qui permet d'afficher la liste entière
   element_liste * temp = liste->premier;
   while(temp != NULL) {
-    printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", temp->value->name, temp->value->university, temp->value->speciality, temp->value->review);
+    afficher_doc(temp->value);
     printf("\n\n");
     temp = temp->suivant;
   }

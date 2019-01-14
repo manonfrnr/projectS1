@@ -6,6 +6,7 @@
 #include <string.h>
 #include "docteur.h"
 #include "pathologie.h"
+#include "fileattente.h"
 
 typedef struct patient patient; // création de la structure patient. Chaque patient est défini par un nom, un age, une date d'entrée et de sortie, une maladie et des observations
 struct patient{
@@ -45,5 +46,6 @@ patient_list * get_patients_by_path(patient_list * liste, pathologie path);
 int count_patients(patient_list * liste);
 docteur * get_free_doc(docteur_list * liste, patient_list * pl);
 patient * get_pat_by_name(patient_list * liste, char * name);
+patient * conversion_patient (patient_urgence * pat_u);
 
 #endif
