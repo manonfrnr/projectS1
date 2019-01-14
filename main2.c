@@ -15,9 +15,10 @@ void menu_patient()
 		int choix; 
 		printf("\t\t1- Afficher la liste des patients \n");
 		printf("\t\t2- Rechercher un patient\n");
-		printf("\t\t3- Crée un patient\n");
+		printf("\t\t3- Créer un patient\n");
 		printf("\t\t4- Supprimer un Patient\n");
 		printf("\t\t5- Retour\n");
+		fseek(stdin,0,SEEK_END);
 		scanf ("%d", &choix); 
 
 		switch(choix)
@@ -30,7 +31,8 @@ void menu_patient()
 			case 2: { // Pour rechercher un patient 
 				char name[30];
 				printf("Quel est le nom du patient ?");
-				scanf("%s", name);
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", name);
 				afficher_patient(get_pat_by_name(liste_patient, name));
 				break; 
 			}
@@ -40,26 +42,33 @@ void menu_patient()
 				char * temp_path = malloc(100);
 				char * temp_doc = malloc(100);
 				crea_pat(pat); 
-				printf("Quel nom ?"); 
-				scanf("%s", pat->name); 
-				printf("Son âge?"); 
-				scanf("%s", pat->year); 
-				printf("Sa date d'admision?"); 
-				scanf("%s" ,pat->DateIn); 
-				printf("Sa date de sortie ?"); 
-				scanf("%s", pat->DateOut); 
-				printf("Sa pathologie ?"); 
-				scanf("%s", temp_path);
+				printf("Quel nom ?");
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", pat->name); 
+				printf("Son âge?");
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", pat->year);
+				printf("Sa date d'admision?");
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s" ,pat->DateIn); 
+				printf("Sa date de sortie ?");
+				fseek(stdin,0,SEEK_END); 
+				scanf("%[^\n]s", pat->DateOut); 
+				printf("Sa pathologie ?");
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", temp_path);
 				pat->Pathologie = get_path_by_name(liste_pathos, temp_path);
 				printf("Son médecin: voulez vous le médecin disponible le plus rapidement ou choisir votre médecin ?\n");
-				scanf("%s", temp_doc);
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", temp_doc);
 				if(strlen(temp_doc) <= 1) {
 					pat->Docteur = get_free_doc(liste_docteur, liste_patient);
 				} else {
 					pat->Docteur = get_doc_by_name(liste_docteur, temp_doc);
 				}
 				printf("Des observations ?\n");
-				scanf("%s", pat->Observation); 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", pat->Observation); 
 				inserer_pat(liste_patient,*pat); 
 				save_pat(liste_patient); 
 				break; 
@@ -69,7 +78,8 @@ void menu_patient()
 				// Recherche du patient
 				char pat_suppr[20]; 
 				printf("Quel est le nom du patient que vous voulez supprimer ?\n");
-				scanf("%s", pat_suppr); 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", pat_suppr); 
 				delete_pat(liste_patient, *(get_pat_by_name(liste_patient, pat_suppr))); 
 				save_pat(liste_patient); 
 				break; 
@@ -93,21 +103,24 @@ void menu_docteur()
 		int choix; 
 		printf("\t\t1- Afficher la liste des docteurs \n");
 		printf("\t\t2- Rechercher un docteur\n");
-		printf("\t\t3- Crée un docteur\n");
+		printf("\t\t3- Créer un docteur\n");
 		printf("\t\t4- Supprimer un Docteur\n");
 		printf("\t\t5- Retour\n");
+		fseek(stdin,0,SEEK_END);
 		scanf ("%d", &choix); 
 
 		switch(choix)
 		{
 			case 1: { // Pour afficher la liste des docteurs
 				afficher_liste_doc(liste_docteur);
+				break;
 			}
 
 			case 2: { // Pour rechercher un docteur
 				char name[30];
 				printf("Quel est le nom du médecin ?");
-				scanf("%s", name);
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", name);
 				afficher_doc(get_doc_by_name(liste_docteur, name));
 				break; 
 			}
@@ -117,15 +130,17 @@ void menu_docteur()
 				doc = malloc(sizeof(docteur)); 
 				init_doc(doc); 
 				printf("Quel nom ?"); 
-				scanf("%s", doc->name); 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", doc->name); 
 				printf("Son Université diplomante?"); 
-				scanf("%s", doc->university); 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", doc->university); 
 				printf("Sa spécialité?"); 
-				scanf("%s" ,doc->speciality); 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s" ,doc->speciality); 
 				printf("Un avis sur lui?"); 
-				scanf("%s", doc->review); 
-				printf("Son médecin: voulez vous le médecin disponible le plus rapidement ou choisir votre médecin ?\n");
-				///////////////////////////////////// A REMPLIR 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", doc->review); 
 
 				inserer_doc(liste_docteur,*doc); 
 				save_doc(liste_docteur); 
@@ -137,13 +152,15 @@ void menu_docteur()
 				// Recherche du docteur
 				char doc_suppr[20];  
 				printf("Quel est le nom du patient que vous voulez supprimer ?\n");
-				scanf("%s", doc_suppr); 
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", doc_suppr); 
 				delete_doc(liste_docteur, *(get_doc_by_name(liste_docteur, doc_suppr))); 
 				save_doc(liste_docteur); 
 				break;
 			}
 
-			case 5: // Retour
+			case 5: // 
+				return;
 				break; 
 
 			default:
@@ -162,6 +179,7 @@ void menu_urgence ()
 			printf("\t\t2- Récupérer un patient \n");
 			printf("\t\t3- Afficher la file d'attente\n");
 			printf("\t\t5- Retour\n");
+			fseek(stdin,0,SEEK_END);
 			scanf ("%d", &choix);
 
 			switch(choix)
@@ -172,12 +190,16 @@ void menu_urgence ()
 					pat_u = malloc(sizeof(patient_urgence)); 
 					initialisation_patient_urgence(pat_u); 
 					printf("Nom du patient ?\n");
-					scanf("%s", pat_u->name);
+					fseek(stdin,0,SEEK_END);
+					scanf("%[^\n]s", pat_u->name);
 					printf("Symptomes?\n");
-					scanf("%s", pat_u->symptome);
+					fseek(stdin,0,SEEK_END);
+					scanf("%[^\n]s", pat_u->symptome);
 					printf("Heure d'arrivée?\n");
-					scanf("%s", pat_u->heure_arrivee); 
+					fseek(stdin,0,SEEK_END);
+					scanf("%[^\n]s", pat_u->heure_arrivee); 
 					enfiler_file_attente ( file_urgence, *pat_u);
+					break;
 				}
 
 				case 2: { // Pour récupérer un patient
@@ -188,9 +210,11 @@ void menu_urgence ()
 				 	printf("Le patient %s est appelé pour son rendez-vous\n", pat_u.name);
 				 	pat_recup = *(conversion_patient(&pat_u)); 
 				 	printf("Quelle date sommes nous aujourd'hui?\n");
-				 	scanf("%s", pat_recup.DateIn); 
+				 	fseek(stdin,0,SEEK_END);
+				 	scanf("%[^\n]s", pat_recup.DateIn); 
 				 	printf("Après visite médicale, de quelle pathologie souffre le patient?\n");
-				 	scanf("%s", patho_temp); 
+				 	fseek(stdin,0,SEEK_END);
+				 	scanf("%[^\n]s", patho_temp); 
 				 	pat_recup.Pathologie = get_path_by_name(liste_pathos, patho_temp);
 				 	pat_recup.Docteur = get_free_doc(liste_docteur, liste_patient);
 				 	inserer_pat(liste_patient, pat_recup);
@@ -223,20 +247,26 @@ void menu_pathologies ()
 		printf("\t\t1- Afficher la liste des pathologies \n");
 		printf("\t\t2- Ajouter une pathologie\n");
 		printf("\t\t5- Retour\n");
+		fseek(stdin,0,SEEK_END);
 		scanf ("%d", &choix);
 		switch(choix)
 		{
-			case 1: // Pour afficher la liste des pathologies
-				afficher_path(liste_pathos); 
+			case 1: {// Pour afficher la liste des pathologies
+				afficher_path(liste_pathos);
+				break;
+			}
 
 			case 2: { // Pour ajouter une pathologie
 				pathologie *patho; 
 				patho = malloc(sizeof(pathologie)); 
 				crea_path(patho);  
 				printf("Nom de la pathologie ?\n");
-				scanf("%s", patho->nom);
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", patho->nom);
 				printf("Definition?\n");
-				scanf("%s", patho->definition);
+				fseek(stdin,0,SEEK_END);
+				scanf("%[^\n]s", patho->definition);
+				inserer_path(liste_pathos, *patho);
 				break;
 			} 
 
@@ -264,6 +294,7 @@ void action_user(){
 		printf("\t\t3- Accéder au menu Urgences\n");
 		printf("\t\t4- Accéder au menu Pathologies\n");
 		printf("\t\t9- Quitter le programme\n");
+		fseek(stdin,0,SEEK_END);
 		scanf("%d", &choix); 
 		switch (choix)
 		{
@@ -321,7 +352,6 @@ int main(){
 	file_urgence->taille=0;
 	file_urgence->debut=NULL;
 	file_urgence->fin=NULL;
-	printf("test\n");
 	
  	//interaction de l'utilisateur.
 	action_user();

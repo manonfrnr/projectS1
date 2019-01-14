@@ -35,10 +35,16 @@ void init_doc(docteur * doc) { // initialisation du docteur
 }
 void afficher_doc(docteur * doc)
 {
-	printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", doc->name, doc->university, doc->speciality, doc->review);
+	if(doc != NULL) {
+		printf("Nom : %s \nUniversité : %s\nSpécialité: %s\nAvis sur le médecin: %s\n", doc->name, doc->university, doc->speciality, doc->review);
+	} else {
+		printf("Impossible d'afficher ce médecin, non trouvé.\n");
+	}
 }
 
 void afficher_liste_doc(docteur_list * liste) { // fonction qui permet d'afficher la liste entière
+  //printf("Taille : %d\n", liste->taille);
+  //printf("Premier : %s\n", liste->premier->value->name);
   element_liste * temp = liste->premier;
   while(temp != NULL) {
     afficher_doc(temp->value);
@@ -83,18 +89,16 @@ int comparer_docteurs(docteur doc1, docteur doc2){ // fonction de comparaison de
 }
 
 void save_doc (docteur_list * liste){ // fonction qui permet la sauvegarde de la liste par l'écriture dans un fichier
-	docteur_list *liste1 = malloc(sizeof(docteur_list));
-	liste1=liste;
+	element_liste *liste1 = liste->premier;
 	FILE * fichier;
 	fichier= fopen("sauvegardedoc.txt","w");
 	if(fichier!=NULL){
-		while (liste1->premier!=NULL) {
-			fprintf(fichier,"%s,%s,%s,%s",liste1->premier->value->name,liste1->premier->value->university,liste1->premier->value->speciality,liste1->premier->value->review);
+		while (liste1!=NULL) {
+			fprintf(fichier,"%s,%s,%s,%s",liste1->value->name,liste1->value->university,liste1->value->speciality,liste1->value->review);
 			fprintf(fichier, "\n");
-			liste1->premier=liste1->premier->suivant;
+			liste1=liste1->suivant;
 		}
 	}
-	free(liste1);
 	fclose(fichier);
 }
 
