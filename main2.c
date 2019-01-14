@@ -118,11 +118,11 @@ void menu_docteur()
 
 			case 2: { // Pour rechercher un docteur
 				char name[30];
-				printf("Quel est le nom du médecin ?");
+				printf("Quel est le nom du médecin  \n?"); 
 				fseek(stdin,0,SEEK_END);
 				scanf("%[^\n]s", name);
 				afficher_doc(get_doc_by_name(liste_docteur, name));
-				printf("Patients de ce docteur : ");
+				printf("Patients de ce docteur : \n");
 				afficher_reduit(get_patients_by_doc(liste_patient, *get_doc_by_name(liste_docteur, name)));
 				break; 
 			}
